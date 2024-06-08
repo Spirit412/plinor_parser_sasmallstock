@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri App</title>
+    <script type="module" src="/main.js" defer></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Мое первое приложение</h1>
+      <!-- <div class="row">
+        <a href="https://tauri.app" target="_blank">
+          <img src="/assets/tauri.svg" class="logo tauri" alt="Tauri logo" />
+        </a>
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+          target="_blank"
+          >
+          <img
+          src="/assets/javascript.svg"
+          class="logo vanilla"
+          alt="JavaScript logo"
+          />
+        </a>
+      </div> -->
+      <div id="time-container">
+        <h1>Текущее время:</h1>
+        <p id="time"></p>
+
+        <form class="row" id="file-form">
+          <input type="file" id="file-input" />
+          <button id="btn-select-file" type="button">Select File</button>
+        </form>
+        <p id="file-path-display"></p>
+        <button id="btn-display-file-path">Display File Path</button>
+
+        <form class="row" id="greet-form">
+          <input id="greet-input" placeholder="Enter a name..." />
+          <button id="btn_greet" type="submit">Greet</button>
+          <br /><button id="btn_submit_get_os_info" type="submit">
+            Get OS info
+          </button>
+        </form>
+
+        <p id="greet-msg"></p>
+        <p id="get_os_info-msg"></p>
+      </div>
+    </div>
+  </body>
+</html>
