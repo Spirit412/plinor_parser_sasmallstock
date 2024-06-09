@@ -1,53 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="styles.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tauri App</title>
-    <script type="module" src="/main.js" defer></script>
-  </head>
+    <head>
+        <meta charset="UTF-8" />
+        <!-- <link rel="stylesheet" href="styles.css" /> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="bootstrap-5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+        <title>Плинор: парсер животных</title>
+        <script type="module" src="/main.js" defer></script>
+        <script src="bootstrap-5.3.3/dist/js/bootstrap.min.js"></script>
+        <script src="bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
 
-  <body>
-    <div class="container">
-      <h1>Мое первое приложение</h1>
-      <!-- <div class="row">
-        <a href="https://tauri.app" target="_blank">
-          <img src="/assets/tauri.svg" class="logo tauri" alt="Tauri logo" />
-        </a>
-        <a
-          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-          target="_blank"
-          >
-          <img
-          src="/assets/javascript.svg"
-          class="logo vanilla"
-          alt="JavaScript logo"
-          />
-        </a>
-      </div> -->
-      <div id="time-container">
-        <h1>Текущее время:</h1>
-        <p id="time"></p>
+    <body>
+        <div class="container">
+            <h1>Мое первое приложение</h1>
 
-        <form class="row" id="file-form">
-          <input type="file" id="file-input" />
-          <button id="btn-select-file" type="button">Select File</button>
-        </form>
-        <p id="file-path-display"></p>
-        <button id="btn-display-file-path">Display File Path</button>
+            <div id="time-container">
+                <h1>Текущее время:</h1>
+                <p id="time"></p>
 
-        <form class="row" id="greet-form">
-          <input id="greet-input" placeholder="Enter a name..." />
-          <button id="btn_greet" type="submit">Greet</button>
-          <br /><button id="btn_submit_get_os_info" type="submit">
-            Get OS info
-          </button>
-        </form>
+                <form class="row" id="file-form">
+                    <input type="file" id="file-input" />
+                    <button id="btn-select-file" type="button">Select
+                        File</button>
+                </form>
+                <p id="file-path-display"></p>
+                <button id="btn-display-file-path">Вывести полный путь до
+                    файла</button>
 
-        <p id="greet-msg"></p>
-        <p id="get_os_info-msg"></p>
-      </div>
-    </div>
-  </body>
+                <form class="row" id="greet-form">
+                    <input id="greet-input" placeholder="Enter a name..." />
+                    <button id="btn_greet" type="submit">Вызвать метод
+                        greet</button>
+                    <br /><button id="btn_submit_get_os_info" type="submit">
+                        Информация о ОС
+                    </button>
+                </form>
+
+                <p id="greet-msg"></p>
+                <p id="get_os_info-msg"></p>
+            </div>
+            <form>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email
+                        address</label>
+                    <input type="email" class="form-control"
+                        id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your
+                        email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1"
+                        class="form-label">Password</label>
+                    <input type="password" class="form-control"
+                        id="exampleInputPassword1">
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle"
+                        type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Dropdown button
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item"
+                                href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another
+                                action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else
+                                here</a></li>
+                    </ul>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input"
+                        id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me
+                        out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
 </html>
