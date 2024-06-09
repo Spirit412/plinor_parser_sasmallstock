@@ -5,4 +5,4 @@ build:
 	cargo tauri build --features custom-protocol
 
 update:
-	cargo tauri update
+	cargo update --manifest-path=src-tauri/Cargo.toml
