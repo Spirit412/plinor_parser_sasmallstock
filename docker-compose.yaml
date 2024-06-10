@@ -1,23 +1,34 @@
 version: "3"
 services:
-  tauri_simple_app:
-    tty: true
-    build:
-      context: ./docker
-      dockerfile: Dockerfile
-    volumes:
-      - ".:/app"
+    mastrer_compile_msvc:
+        image: tauri_rust_cross_compile_msvc_image
+        build:
+            context: ./docker
+            dockerfile: Dockerfile.windows_msvc
+        volumes:
+            - ".:/app"
 
-  rust_cross_compile_gnu:
-    build:
-      context: ./docker
-      dockerfile: Dockerfile.windows_gnu
-    volumes:
-      - ".:/app"
+    tauri_simple_app:
+        tty: true
+        image: rust:latest
+        working_dir: app
+        volumes:
+            - ".:/app"
 
-  rust_cross_compile_msvc:
-    build:
-      context: ./docker
-      dockerfile: Dockerfile.windows_msvc
-    volumes:
-      - ".:/app"
+    rust_cross_compile_gnu:
+        image: tauri_rust_cross_compile_gnu_image
+        build:
+            context: ./docker
+            dockerfile: Dockerfile.windows_gnu
+        volumes:
+            - ".:/app"
+
+    rust_cross_compile_msvc:
+        image: tauri_rust_cross_compile_msvc_image
+        # build:
+        #     context: ./docker
+        #     dockerfile: Dockerfile.windows_msvc
+        depends_on: 
+            - mastrer_compile_msvc
+        volumes:
+            - ".:/app"

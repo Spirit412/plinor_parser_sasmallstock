@@ -26,7 +26,8 @@ fn main() {
                 system_commands::greet,
                 system_commands::get_os_info,
                 system_commands::get_current_time,
-                requests::get_html_table_list_animals
+                requests::get_html_table_list_animals,
+                requests::get_breeds()
             ]
         )
         .run(tauri::generate_context!())

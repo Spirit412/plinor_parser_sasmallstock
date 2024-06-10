@@ -1,5 +1,5 @@
-use std::process::Command;
 use chrono::Local;
+use std::env;
 
 #[tauri::command]
 pub fn greet(name: &str) -> String {
@@ -8,25 +8,16 @@ pub fn greet(name: &str) -> String {
 
 #[tauri::command]
 pub fn get_os_info() -> String {
-    let os_release = Command::new("cat")
-        .arg("/etc/os-release")
-        .output()
-        .expect("Failed to execute command");
-
-    let os_info = String::from_utf8_lossy(&os_release.stdout);
-
-    let mut name = String::new();
-    let mut version = String::new();
-
-    for line in os_info.lines() {
-        if line.starts_with("NAME=") {
-            name = line.split_once('=').unwrap().1.trim().to_string();
-        } else if line.starts_with("VERSION_ID=") {
-            version = line.split_once('=').unwrap().1.trim().to_string();
-        }
-    }
-
-    format!("{} {}", name, version)
+    let cur_os = env::consts::OS;
+    let info = os_info::get();
+    format!(
+        "{}, Type: {:#?} Version: {:#?} Bitness: {:#?} Architecture: {:#?}",
+        cur_os,
+        info.os_type(),
+        info.version(),
+        info.bitness(),
+        info.architecture()
+    )
 }
 
 #[tauri::command]
