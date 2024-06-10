@@ -1,0 +1,41 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/rust
+{
+    "name": "Rust",
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    "service": "dev_tauri_api",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "extensions": {
+            "vscode": {
+                "extensions": [
+                    "vadimcn.vscode-lldb",
+                    "ms-vscode.anycode-rust",
+                    "formulahendry.code-runner",
+                    "serayuzgur.crates",
+                    "mikestead.dotenv",
+                    "tamasfe.even-better-toml",
+                    "mhutchie.git-graph",
+                    "donjayamanne.githistory",
+                    "eamodio.gitlens",
+                    "ms-vscode.makefile-tools",
+                    "jinxdash.prettier-rust",
+                    "dustypomerleau.rust-syntax",
+                    "tauri-apps.tauri-vscode",
+                    "mutantdino.resourcemonitor",
+                    "angular.ng-template",
+                    "xabikos.javascriptsnippets",
+                    "bysabi.prettier-vscode-standard",
+                    "codeium.codeium",
+                    "rust-lang.rust-analyzer"
+                ]
+            }
+        },
+    },
+    "postCreateCommand": "rustc --version",
+    "forwardPorts": [
+        3000
+    ],
+}
