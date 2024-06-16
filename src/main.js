@@ -17,9 +17,9 @@ async function inv_get_os_info() {
     });
 
 }
-async function inv_btnGetHtmlTableListAnimals() {
+async function inv_get_breeds() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    greetMsgEl.textContent = await invoke("get_html_table_list_animals",{
+    greetMsgEl.textContent = await invoke("get_breeds", {
         name: greetInputEl.value,
     });
 }
@@ -57,7 +57,7 @@ window.addEventListener("DOMContentLoaded",() => {
     btnGetHtmlTableListAnimals.addEventListener("click",async (e) => {
         e.preventDefault();
         try {
-            const res = await inv_btnGetHtmlTableListAnimals();
+            const res = await inv_get_breeds();
             console.log(res);
         } catch(error) {
             console.error(error);

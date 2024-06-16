@@ -1,0 +1,655 @@
+
+
+
+<style type = "text/css">
+        .nodegrpcontainer {
+            background-color:#fff;
+            margin:5px;
+			padding:10px;
+            //border:1px solid #000;
+			width:100%;
+        }
+        .rendnode {
+            font-size:7pt;
+            font-weight:normal;
+            color:#000000;
+        }
+        .rendnodevalue
+        {
+            font-size:7pt; font-weight:bold; font-family:Verdana;
+        }
+        .rendscalenode {
+            
+        }
+
+		
+    </style>  
+	
+  
+<html><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="https://www.w3.org/1999/xhtml">   
+        <head>
+            <title>SA Smallstock.com</title>
+            <meta charset="UTF-8"/>
+            <meta name="description" content="SA Smallstock.com"/>
+            <meta name="author" content="SA Smallstock.com"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+            <!--<link rel="stylesheet" href="https://goo.gl/d6xxCg"> -->
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P5VGLJB');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T4LCPBN8YT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-T4LCPBN8YT');
+</script>
+
+
+            <!--Google Javascript API-->
+            <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+            <!--Google Font Roboto Condensed-->
+            <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+
+            <!--JQuery 1.11.3-->
+            <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="crossorigin="anonymous"></script>
+            <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+            <!--<script src='common/jquery-1.11.3.min.js'></script> --->
+            <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+
+            <!--Bootstrap 4-->
+            <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> -->
+            <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script> -->
+            <!-- <link rel="stylesheet" href="common/bootstrap/4.6/css/bootstrap.min.css"> -->
+            <!-- <script src="common/bootstrap/4.6/js/bootstrap.bundle.min.js"></script> --> 
+
+
+            <!--Sanitize Styling-->
+            <link rel='stylesheet' href='common/sanitize.css'>
+
+            <!--Font awesome 5-->
+            <link href="xvendors/fontawesome/5/css/all.min.css" rel="stylesheet">
+
+            <!--Data Tables-->
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.24/datatables.min.css"/> 
+            <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.24/datatables.min.js"></script>
+
+            <!--Chart.js-->
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" integrity="sha512-hZf9Qhp3rlDJBvAKvmiG+goaaKRZA6LKUO35oK6EsM0/kjPK32Yw7URqrq3Q+Nvbbt8Usss+IekL7CRn83dYmw==" crossorigin="anonymous"></script>
+            
+
+            <!--AJAX???  3.3.1-->
+            <!--A<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+            <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">  
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> 
+            -->
+
+            
+            <link rel='stylesheet' href='common/bootstrap.min.css'>
+            <script src="old_bootstrap/bootstrap.min.js"></script>
+
+            <!--CUSTOM STYLING-->
+            <style type = "text/css">
+                .nodegrpcontainer {
+                    background-color:#fff;
+                    margin:5px;
+                    padding:10px;
+                    //border:1px solid #000;
+                    width:100%;
+                }
+                .rendnode {
+                    font-size:7pt;
+                    font-weight:normal;
+                    color:#000000;
+                }
+                .rendnodevalue
+                {
+                    font-size:7pt; font-weight:bold; font-family:Verdana;
+                }
+                .rendscalenode {
+                    
+                }
+            </style>
+
+            <!-- #### Colors -->
+            <style>
+            .color-sablue
+            {
+             color:#26567e;
+            }
+            .color-sared
+            {
+            color:#990100;
+            }
+            .color-sagreen
+            {
+              color:#2d6a4f;
+            }
+            .bg-sablue
+            {
+              background-color:#cce6f4;
+            }
+            .color-saster
+            {
+            color:#780000;
+            }
+
+.color-butred
+{
+  background-color:hsl(3, 80%, 60%);
+  color:hsl(0, 0%, 100%);
+  border-color:hsl(0, 80%, 55%);
+  transition: 0.3s;
+}
+.color-butred:hover
+{
+  background-color:hsl(3, 80%, 40%);
+  color:hsl(0, 0%, 100%);
+  border-color:hsl(0, 80%, 30%);
+}
+
+.btn-green
+{
+  background-color:hsl(152, 40%, 60%);
+  color:hsl(0, 0%, 100%);
+  border-color:hsl(152, 40%, 50%);
+  transition: 0.3s;
+}
+.btn-green:hover
+{
+  background-color:hsl(152, 40%, 40%);
+  color:hsl(0, 0%, 100%);
+  border-color:hsl(152, 40%, 30%);
+}
+.chartsize200
+{
+  height:400px;
+}
+.small
+{
+    font-size: 88%; 
+}
+.tznormal
+{
+    font-size: 100%; 
+}
+
+            </style>
+
+
+
+
+            <!--CUSTOM STYLING-->
+
+        </head>
+        
+        <body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5VGLJB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class='container-fluid'><div class='row'><div class='col-md-12 col-lg-12 col-sm-12 col-xs-12'><div class='col-md-12 col-sm-12'  align=center ><br/><img src='images/SASmallStock.png' class=img-responsive></div></div>
+        <div class=col-md-12>&nbsp;</div></div><div class=col-md-12>&nbsp;</div><div class=col-md-6></div><div class='col-md-12' align=center ></div><div class='col-md-2 col-md-offset-5 ' align=center >
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#about2">
+About Us
+</button>
+
+<!-- Modal -->
+
+<div class="modal fade" id="about2" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="about2" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="about2"><b>ABOUT US</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      The purpose of SASmallstock.com is to provide users with a functional and efficient search and comparison facility for smallstock animals based on genetic evaluations. Genetic merit is based on the South African genetic evaluation and the information and data supplied through SA Stud Book's genetic services. Registered South African Beef Breeders have access to the information of their own herds' female animals as recorded on Logix through the SASmallstock.com mating facility.<br/><br/>
+
+The mating facility and inbreeding calculations of SASmallstock.com is a complete solution to matings and breeding goal achievement for smallstock breeders participating in Logix Beef. The mating facility is available to licensed users and is accessed with a user's name and password.<br/><br/>
+
+By using SASmallstock.com, it is accepted that the Terms and Conditions <button type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#disclaimer2'>available here</button> have been read and accepted.
+
+<br/><br/>
+
+<b>SA Stud Book's Technical Consultants:</b><br/>
+<hr>
+<div class='row'>
+	<div class='col-md-6'>
+		<b>Western Cape</b><br/>Chanelle Steenekamp <br/>&#9742; +27 72 836 4108<br/><i class='fa fa-envelope-o'></i> chanelle@studbook.co.za
+	</div>
+	<div class='col-md-6'>
+		<b>Eastern Cape</b><br/>Ruann Kruger <br/>&#9742; +27 82 766 0562<br/><i class='fa fa-envelope-o'></i> ruann@studbook.co.za
+	</div>
+</div>
+<hr>
+<div class='row'>
+	<div class='col-md-6'>
+		<b>Northen Cape</b><br/>Dolf Cloete <br/>&#9742; +27 82 660 3266<br/><i class='fa fa-envelope-o'></i> dolf@studbook.co.za
+	</div>
+	<div class='col-md-6'>
+		<b>North/Eastern Free State</b><br/>Siebert Vermeulen <br/>&#9742; +27 82 548 4608<br/><i class='fa fa-envelope-o'></i> siebert@studbook.co.za
+	</div>
+</div>
+<hr>
+<div class='row'>
+	<div class='col-md-6'>
+		<b>South/Western Free State</b><br/>Gerdus de Klerk <br/>&#9742; +27 72 691 3600<br/><i class='fa fa-envelope-o'></i> gerdus@studbook.co.za
+	</div>
+	<div class='col-md-6'>
+		<b>KwaZulu-Natal</b><br/>Siebert Vermeulen <br/>&#9742; +27 82 548 4608<br/><i class='fa fa-envelope-o'></i> siebert@studbook.co.za
+	</div>
+</div>
+<hr>
+<div class='row'>
+	<div class='col-md-6'>
+		<b>Limpopo & North West Provinces</b><br/>Andries Riekert<br/>&#9742; +27 82 465 0671<br/><i class='fa fa-envelope-o'></i> andries@studbook.co.za
+	</div>
+	<div class='col-md-6'>
+		<b>Mapumulanga & Guateng Provinces</b><br/>Thalia Brameld<br/>&#9742; 0714931111<br/><i class='fa fa-envelope-o'></i> thalia@studbook.co.za
+	</div>
+</div>
+<hr>
+<div class='row'>
+	<div class='col-md-6'>
+		<b>Genetic Evaluations</b><br/>Dr. Bernice Mostert<br/>&#9742; +27 72 380 6401<br/><i class='fa fa-envelope-o'></i> bernice@studbook.co.za
+	</div>
+	<div class='col-md-6'>
+		<b>Head: Production Recording</b><br/>Herman Labuschagne<br/>&#9742; +27 82 495 9764<br/><i class='fa fa-envelope-o'></i> herman@studbook.co.za
+	</div>
+</div>
+<hr>
+<br/>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div> <script>
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })</script>
+<script>
+
+$(document).ready(function(){
+
+
+  $('#ani_int_brd_reg').change(function(){
+		$('#ani_int_brd_name').val($(this).val());
+		$('#ani_int_brd').val($(this).val());
+        if ($('#ani_int_brd_reg').val()!='ALL')
+			{
+			$('#SEARCH_IND_1').removeAttr('disabled');
+			}
+		else
+			{
+			$('#SEARCH_IND_1').attr('disabled', true);
+			} 
+ });
+
+  $('#ani_int_brd_name').change(function(){
+                $('#ani_int_brd_reg').val($(this).val());
+                $('#ani_int_brd').val($(this).val());
+        if ($('#ani_int_brd_name').val()!='ALL')
+                        {
+                        $('#SEARCH_IND_1').removeAttr('disabled');
+                        }
+                else
+                        {
+                        $('#SEARCH_IND_1').attr('disabled', true);
+                        } 
+ });
+
+  $('#ani_int_brd').change(function(){
+                $('#ani_int_brd_name').val($(this).val());
+                $('#ani_int_brd_reg').val($(this).val());
+        if ($('#ani_int_brd').val()!='ALL')
+                        {
+                        $('#SEARCH_IND_1').removeAttr('disabled');
+                        }
+                else
+                        {
+                        $('#SEARCH_IND_1').attr('disabled', true);
+                        } 
+ });
+
+
+});
+
+</script><script>
+
+$(document).ready(function() {
+
+   $('#filter1').change(function(){var filter1=document.getElementById('filter1').value; localStorage.setItem('filter1',filter1);});   $('#bweight_dir_sig').change(function(){var bweight_dir_sig=document.getElementById('bweight_dir_sig').value; localStorage.setItem('bweight_dir_sig',bweight_dir_sig);});   $('#pre_dir_sig').change(function(){var pre_dir_sig=document.getElementById('pre_dir_sig').value; localStorage.setItem('pre_dir_sig',pre_dir_sig);});   $('#pre_mat_sig').change(function(){var pre_mat_sig=document.getElementById('pre_mat_sig').value; localStorage.setItem('pre_mat_sig',pre_mat_sig);});   $('#pre_comb_sig').change(function(){var pre_comb_sig=document.getElementById('pre_comb_sig').value; localStorage.setItem('pre_comb_sig',pre_comb_sig);});   $('#wean_dir_sig').change(function(){var wean_dir_sig=document.getElementById('wean_dir_sig').value; localStorage.setItem('wean_dir_sig',wean_dir_sig);});   $('#wean_mat_sig').change(function(){var wean_mat_sig=document.getElementById('wean_mat_sig').value; localStorage.setItem('wean_mat_sig',wean_mat_sig);});   $('#wean_comb_sig').change(function(){var wean_comb_sig=document.getElementById('wean_comb_sig').value; localStorage.setItem('wean_comb_sig',wean_comb_sig);});   $('#post_dir_sig').change(function(){var post_dir_sig=document.getElementById('post_dir_sig').value; localStorage.setItem('post_dir_sig',post_dir_sig);});   $('#n_weaned_sig').change(function(){var n_weaned_sig=document.getElementById('n_weaned_sig').value; localStorage.setItem('n_weaned_sig',n_weaned_sig);});   $('#twi_sig').change(function(){var twi_sig=document.getElementById('twi_sig').value; localStorage.setItem('twi_sig',twi_sig);});   $('#afb_sig').change(function(){var afb_sig=document.getElementById('afb_sig').value; localStorage.setItem('afb_sig',afb_sig);});   $('#ilp_sig').change(function(){var ilp_sig=document.getElementById('ilp_sig').value; localStorage.setItem('ilp_sig',ilp_sig);});   $('#cfw_sig').change(function(){var cfw_sig=document.getElementById('cfw_sig').value; localStorage.setItem('cfw_sig',cfw_sig);});   $('#fd_sig').change(function(){var fd_sig=document.getElementById('fd_sig').value; localStorage.setItem('fd_sig',fd_sig);});   $('#sl_sig').change(function(){var sl_sig=document.getElementById('sl_sig').value; localStorage.setItem('sl_sig',sl_sig);});   $('#fleece_sig').change(function(){var fleece_sig=document.getElementById('fleece_sig').value; localStorage.setItem('fleece_sig',fleece_sig);});   $('#conf_sig').change(function(){var conf_sig=document.getElementById('conf_sig').value; localStorage.setItem('conf_sig',conf_sig);});   $('#bweight_dir_val').change(function(){var bweight_dir_val=document.getElementById('bweight_dir_val').value; localStorage.setItem('bweight_dir_val',bweight_dir_val);});   $('#pre_dir_val').change(function(){var pre_dir_val=document.getElementById('pre_dir_val').value; localStorage.setItem('pre_dir_val',pre_dir_val);});   $('#pre_mat_val').change(function(){var pre_mat_val=document.getElementById('pre_mat_val').value; localStorage.setItem('pre_mat_val',pre_mat_val);});   $('#pre_comb_val').change(function(){var pre_comb_val=document.getElementById('pre_comb_val').value; localStorage.setItem('pre_comb_val',pre_comb_val);});   $('#wean_dir_val').change(function(){var wean_dir_val=document.getElementById('wean_dir_val').value; localStorage.setItem('wean_dir_val',wean_dir_val);});   $('#wean_mat_val').change(function(){var wean_mat_val=document.getElementById('wean_mat_val').value; localStorage.setItem('wean_mat_val',wean_mat_val);});   $('#wean_comb_val').change(function(){var wean_comb_val=document.getElementById('wean_comb_val').value; localStorage.setItem('wean_comb_val',wean_comb_val);});   $('#post_dir_val').change(function(){var post_dir_val=document.getElementById('post_dir_val').value; localStorage.setItem('post_dir_val',post_dir_val);});   $('#n_weaned_val').change(function(){var n_weaned_val=document.getElementById('n_weaned_val').value; localStorage.setItem('n_weaned_val',n_weaned_val);});   $('#twi_val').change(function(){var twi_val=document.getElementById('twi_val').value; localStorage.setItem('twi_val',twi_val);});   $('#afb_val').change(function(){var afb_val=document.getElementById('afb_val').value; localStorage.setItem('afb_val',afb_val);});   $('#ilp_val').change(function(){var ilp_val=document.getElementById('ilp_val').value; localStorage.setItem('ilp_val',ilp_val);});   $('#cfw_val').change(function(){var cfw_val=document.getElementById('cfw_val').value; localStorage.setItem('cfw_val',cfw_val);});   $('#fd_val').change(function(){var fd_val=document.getElementById('fd_val').value; localStorage.setItem('fd_val',fd_val);});   $('#sl_val').change(function(){var sl_val=document.getElementById('sl_val').value; localStorage.setItem('sl_val',sl_val);});   $('#fleece_val').change(function(){var fleece_val=document.getElementById('fleece_val').value; localStorage.setItem('fleece_val',fleece_val);});   $('#conf_val').change(function(){var conf_val=document.getElementById('conf_val').value; localStorage.setItem('conf_val',conf_val);});   $('#bweight_dir_ownind').change(function(){var bweight_dir_ownind=document.getElementById('bweight_dir_ownind').value; localStorage.setItem('bweight_dir_ownind',bweight_dir_ownind);});   $('#pre_dir_ownind').change(function(){var pre_dir_ownind=document.getElementById('pre_dir_ownind').value; localStorage.setItem('pre_dir_ownind',pre_dir_ownind);});   $('#pre_mat_ownind').change(function(){var pre_mat_ownind=document.getElementById('pre_mat_ownind').value; localStorage.setItem('pre_mat_ownind',pre_mat_ownind);});   $('#pre_comb_ownind').change(function(){var pre_comb_ownind=document.getElementById('pre_comb_ownind').value; localStorage.setItem('pre_comb_ownind',pre_comb_ownind);});   $('#wean_dir_ownind').change(function(){var wean_dir_ownind=document.getElementById('wean_dir_ownind').value; localStorage.setItem('wean_dir_ownind',wean_dir_ownind);});   $('#wean_mat_ownind').change(function(){var wean_mat_ownind=document.getElementById('wean_mat_ownind').value; localStorage.setItem('wean_mat_ownind',wean_mat_ownind);});   $('#wean_comb_ownind').change(function(){var wean_comb_ownind=document.getElementById('wean_comb_ownind').value; localStorage.setItem('wean_comb_ownind',wean_comb_ownind);});   $('#post_dir_ownind').change(function(){var post_dir_ownind=document.getElementById('post_dir_ownind').value; localStorage.setItem('post_dir_ownind',post_dir_ownind);});   $('#n_weaned_ownind').change(function(){var n_weaned_ownind=document.getElementById('n_weaned_ownind').value; localStorage.setItem('n_weaned_ownind',n_weaned_ownind);});   $('#twi_ownind').change(function(){var twi_ownind=document.getElementById('twi_ownind').value; localStorage.setItem('twi_ownind',twi_ownind);});   $('#tww_ownind').change(function(){var tww_ownind=document.getElementById('tww_ownind').value; localStorage.setItem('tww_ownind',tww_ownind);});   $('#afb_ownind').change(function(){var afb_ownind=document.getElementById('afb_ownind').value; localStorage.setItem('afb_ownind',afb_ownind);});   $('#ilp_ownind').change(function(){var ilp_ownind=document.getElementById('ilp_ownind').value; localStorage.setItem('ilp_ownind',ilp_ownind);});   $('#cfw_ownind').change(function(){var cfw_ownind=document.getElementById('cfw_ownind').value; localStorage.setItem('cfw_ownind',cfw_ownind);});   $('#fd_ownind').change(function(){var fd_ownind=document.getElementById('fd_ownind').value; localStorage.setItem('fd_ownind',fd_ownind);});   $('#sl_ownind').change(function(){var sl_ownind=document.getElementById('sl_ownind').value; localStorage.setItem('sl_ownind',sl_ownind);});   $('#fleece_ownind').change(function(){var fleece_ownind=document.getElementById('fleece_ownind').value; localStorage.setItem('fleece_ownind',fleece_ownind);});   $('#conf_ownind').change(function(){var conf_ownind=document.getElementById('conf_ownind').value; localStorage.setItem('conf_ownind',conf_ownind);});   $('#bweight_dir_sigv').change(function(){var bweight_dir_sigv=document.getElementById('bweight_dir_sigv').value; localStorage.setItem('bweight_dir_sigv',bweight_dir_sigv);});   $('#pre_dir_sigv').change(function(){var pre_dir_sigv=document.getElementById('pre_dir_sigv').value; localStorage.setItem('pre_dir_sigv',pre_dir_sigv);});   $('#pre_mat_sigv').change(function(){var pre_mat_sigv=document.getElementById('pre_mat_sigv').value; localStorage.setItem('pre_mat_sigv',pre_mat_sigv);});   $('#pre_comb_sigv').change(function(){var pre_comb_sigv=document.getElementById('pre_comb_sigv').value; localStorage.setItem('pre_comb_sigv',pre_comb_sigv);});   $('#wean_dir_sigv').change(function(){var wean_dir_sigv=document.getElementById('wean_dir_sigv').value; localStorage.setItem('wean_dir_sigv',wean_dir_sigv);});   $('#wean_mat_sigv').change(function(){var wean_mat_sigv=document.getElementById('wean_mat_sigv').value; localStorage.setItem('wean_mat_sigv',wean_mat_sigv);});   $('#wean_comb_sigv').change(function(){var wean_comb_sigv=document.getElementById('wean_comb_sigv').value; localStorage.setItem('wean_comb_sigv',wean_comb_sigv);});   $('#post_dir_sigv').change(function(){var post_dir_sigv=document.getElementById('post_dir_sigv').value; localStorage.setItem('post_dir_sigv',post_dir_sigv);});   $('#n_weaned_sigv').change(function(){var n_weaned_sigv=document.getElementById('n_weaned_sigv').value; localStorage.setItem('n_weaned_sigv',n_weaned_sigv);});   $('#twi_sigv').change(function(){var twi_sigv=document.getElementById('twi_sigv').value; localStorage.setItem('twi_sigv',twi_sigv);});   $('#afb_sigv').change(function(){var afb_sigv=document.getElementById('afb_sigv').value; localStorage.setItem('afb_sigv',afb_sigv);});   $('#ilp_sigv').change(function(){var ilp_sigv=document.getElementById('ilp_sigv').value; localStorage.setItem('ilp_sigv',ilp_sigv);});   $('#cfw_sigv').change(function(){var cfw_sigv=document.getElementById('cfw_sigv').value; localStorage.setItem('cfw_sigv',cfw_sigv);});   $('#fd_sigv').change(function(){var fd_sigv=document.getElementById('fd_sigv').value; localStorage.setItem('fd_sigv',fd_sigv);});   $('#sl_sigv').change(function(){var sl_sigv=document.getElementById('sl_sigv').value; localStorage.setItem('sl_sigv',sl_sigv);});   $('#fleece_sigv').change(function(){var fleece_sigv=document.getElementById('fleece_sigv').value; localStorage.setItem('fleece_sigv',fleece_sigv);});   $('#conf_sigv').change(function(){var conf_sigv=document.getElementById('conf_sigv').value; localStorage.setItem('conf_sigv',conf_sigv);});   $('#age2_sig').change(function(){var age2_sig=document.getElementById('age2_sig').value; localStorage.setItem('age2_sig',age2_sig);});   $('#age1_sig').change(function(){var age1_sig=document.getElementById('age1_sig').value; localStorage.setItem('age1_sig',age1_sig);});   $('#ekw_sig').change(function(){var ekw_sig=document.getElementById('ekw_sig').value; localStorage.setItem('ekw_sig',ekw_sig);});   $('#ekw_rep_sig').change(function(){var ekw_rep_sig=document.getElementById('ekw_rep_sig').value; localStorage.setItem('ekw_rep_sig',ekw_rep_sig);});   $('#ngi_sig').change(function(){var ngi_sig=document.getElementById('ngi_sig').value; localStorage.setItem('ngi_sig',ngi_sig);});   $('#ori_sig').change(function(){var ori_sig=document.getElementById('ori_sig').value; localStorage.setItem('ori_sig',ori_sig);});   $('#lmi_sig').change(function(){var lmi_sig=document.getElementById('lmi_sig').value; localStorage.setItem('lmi_sig',lmi_sig);});   $('#age2_sigv').change(function(){var age2_sigv=document.getElementById('age2_sigv').value; localStorage.setItem('age2_sigv',age2_sigv);});   $('#age1_sigv').change(function(){var age1_sigv=document.getElementById('age1_sigv').value; localStorage.setItem('age1_sigv',age1_sigv);});   $('#ekw_sigv').change(function(){var ekw_sigv=document.getElementById('ekw_sigv').value; localStorage.setItem('ekw_sigv',ekw_sigv);});   $('#ekw_rep_sigv').change(function(){var ekw_rep_sigv=document.getElementById('ekw_rep_sigv').value; localStorage.setItem('ekw_rep_sigv',ekw_rep_sigv);});   $('#ngi_sigv').change(function(){var ngi_sigv=document.getElementById('ngi_sigv').value; localStorage.setItem('ngi_sigv',ngi_sigv);});   $('#ori_sigv').change(function(){var ori_sigv=document.getElementById('ori_sigv').value; localStorage.setItem('ori_sigv',ori_sigv);});   $('#lmi_sigv').change(function(){var lmi_sigv=document.getElementById('lmi_sigv').value; localStorage.setItem('lmi_sigv',lmi_sigv);});   $('#age2_sig').change(function(){var age2_sig=document.getElementById('age2_sig').value; localStorage.setItem('age2_sig',age2_sig);});   $('#age1_sig').change(function(){var age1_sig=document.getElementById('age1_sig').value; localStorage.setItem('age1_sig',age1_sig);});   $('#ekw_sig').change(function(){var ekw_sig=document.getElementById('ekw_sig').value; localStorage.setItem('ekw_sig',ekw_sig);});   $('#ekw_rep_sig').change(function(){var ekw_rep_sig=document.getElementById('ekw_rep_sig').value; localStorage.setItem('ekw_rep_sig',ekw_rep_sig);});   $('#ngi_sig').change(function(){var ngi_sig=document.getElementById('ngi_sig').value; localStorage.setItem('ngi_sig',ngi_sig);});   $('#ori_sig').change(function(){var ori_sig=document.getElementById('ori_sig').value; localStorage.setItem('ori_sig',ori_sig);});   $('#lmi_sig').change(function(){var lmi_sig=document.getElementById('lmi_sig').value; localStorage.setItem('lmi_sig',lmi_sig);});
+var verval_o=['filter1','bweight_dir_sig','pre_dir_sig','pre_mat_sig','pre_comb_sig','wean_dir_sig','wean_mat_sig','wean_comb_sig','post_dir_sig','n_weaned_sig','twi_sig','afb_sig','ilp_sig','cfw_sig','fd_sig','sl_sig','fleece_sig','conf_sig','bweight_dir_val','pre_dir_val','pre_mat_val','pre_comb_val','wean_dir_val','wean_mat_val','wean_comb_val','post_dir_val','n_weaned_val','twi_val','afb_val','ilp_val','cfw_val','fd_val','sl_val','fleece_val','conf_val','bweight_dir_sigv','pre_dir_sigv','pre_mat_sigv','pre_comb_sigv','wean_dir_sigv','wean_mat_sigv','wean_comb_sigv','post_dir_sigv','n_weaned_sigv','twi_sigv','afb_sigv','ilp_sigv','cfw_sigv','fd_sigv','sl_sigv','fleece_sigv','conf_sigv'];
+
+
+var verval_n=['bweight_dir_ownind','pre_dir_ownind','pre_mat_ownind','pre_comb_ownind','wean_dir_ownind','wean_mat_ownind','wean_comb_ownind','post_dir_ownind','n_weaned_ownind','twi_ownind','afb_ownind','ilp_ownind','cfw_ownind','fd_ownind','sl_ownind','fleece_ownind','conf_ownind','tww_ownind'];
+
+var vero_len=verval_o.length;
+var vern_len=verval_n.length;
+
+for (i=0;i<vero_len;i++)  
+                        { 
+                         thename=''+verval_o[i]; 
+                                tempval=localStorage.getItem(thename);
+                                //document.getElementById(thename).value=localStorage.getItem(thename);
+                                $('#thename').val(tempval);
+                        }
+for (i=0;i<vern_len;i++)  
+                        { 
+                         thename=''+verval_n[i]; 
+                                tempval=localStorage.getItem(thename);
+                               // document.getElementById(thename).value=localStorage.getItem(thename);
+                                $('#thename').val(tempval);
+                        }
+
+			
+var ownindex=['bweight_dir_ownind','pre_dir_ownind','pre_mat_ownind','pre_comb_ownind','wean_dir_ownind','wean_mat_ownind','wean_comb_ownind','post_dir_ownind','n_weaned_ownind','twi_ownind','afb_ownind','ilp_ownind','cfw_ownind','fd_ownind','sl_ownind','fleece_ownind','conf_ownind','tww_ownind'];
+
+var own_len=ownindex.length;
+
+gtotal=0;
+for (i=0;i<own_len;i++)
+		{
+		thename=''+ownindex[i];
+		if (document.getElementById(thename).value=='')
+			{
+			document.getElementById(thename).value='0';
+			}
+		gtotal=gtotal+parseFloat(Math.abs(document.getElementById(thename).value));
+		}
+		document.getElementById('form_total').value=gtotal;
+		if (document.getElementById('form_total').value==100)
+			{
+			$('#sbmtot').removeAttr('disabled');
+			}
+		else{	
+			$('#sbmtot').attr('disabled','disabled');
+			}
+	 
+		document.getElementById('form_total').value=gtotal;
+
+
+
+
+document.getElementById('bweight_dir_ownind').value=localStorage.getItem('bweight_dir_ownind');
+document.getElementById('pre_dir_ownind').value=localStorage.getItem('pre_dir_ownind');
+document.getElementById('pre_mat_ownind').value=localStorage.getItem('pre_mat_ownind');
+document.getElementById('pre_comb_ownind').value=localStorage.getItem('pre_comb_ownind');
+document.getElementById('wean_dir_ownind').value=localStorage.getItem('wean_dir_ownind');
+document.getElementById('wean_mat_ownind').value=localStorage.getItem('wean_mat_ownind');
+document.getElementById('wean_comb_ownind').value=localStorage.getItem('wean_comb_ownind');
+document.getElementById('post_dir_ownind').value=localStorage.getItem('post_dir_ownind');
+document.getElementById('n_weaned_ownind').value=localStorage.getItem('n_weaned_ownind');
+document.getElementById('twi_ownind').value=localStorage.getItem('twi_ownind');
+document.getElementById('afb_ownind').value=localStorage.getItem('afb_ownind');
+document.getElementById('ilp_ownind').value=localStorage.getItem('ilp_ownind');
+document.getElementById('cfw_ownind').value=localStorage.getItem('cfw_ownind');
+document.getElementById('fd_ownind').value=localStorage.getItem('fd_ownind');
+document.getElementById('sl_ownind').value=localStorage.getItem('sl_ownind');
+document.getElementById('fleece_ownind').value=localStorage.getItem('fleece_ownind');
+document.getElementById('conf_ownind').value=localStorage.getItem('conf_ownind');
+document.getElementById('tww_ownind').value=localStorage.getItem('tww_ownind');
+
+
+	gtotal=0;
+
+	
+$('#bweight_dir_ownind,#pre_dir_ownind,#pre_mat_ownind,#pre_comb_ownind,#wean_dir_ownind,#wean_mat_ownind,#wean_comb_ownind,#post_dir_ownind,#n_weaned_ownind,#twi_ownind,#afb_ownind,#ilp_ownind,#cfw_ownind,#fd_ownind,#sl_ownind,#fleece_ownind,#conf_ownind,#tww_ownind').change(function()
+	 {
+	 var ownindex=['bweight_dir_ownind','pre_dir_ownind','pre_mat_ownind','pre_comb_ownind','wean_dir_ownind','wean_mat_ownind','wean_comb_ownind','post_dir_ownind','n_weaned_ownind','twi_ownind','afb_ownind','ilp_ownind','cfw_ownind','fd_ownind','sl_ownind','fleece_ownind','conf_ownind','tww_ownind'];
+	 var own_len=ownindex.length;
+	 gtotal=0;	
+	for (i=0;i<own_len;i++)
+		{
+		thename=''+ownindex[i];
+		if (document.getElementById(thename).value=='')
+			{
+			document.getElementById(thename).value=0;
+			}
+		else
+			{
+			x=document.getElementById(thename).value
+			document.getElementById(thename).setAttribute('value',x);
+			}
+		gtotal=gtotal+parseFloat(Math.abs(document.getElementById(thename).value));
+		}
+		document.getElementById('form_total').value=gtotal;
+		if (document.getElementById('form_total').value==100)
+			{
+			$('#sbmtot').removeAttr('disabled');
+			}
+		else{	
+			$('#sbmtot').attr('disabled','disabled');
+			}
+	});
+
+$('#clrfrm').click(function(){
+var ownindex=['bweight_dir_ownind','pre_dir_ownind','pre_mat_ownind','pre_comb_ownind','wean_dir_ownind','wean_mat_ownind','wean_comb_ownind','post_dir_ownind','n_weaned_ownind','twi_ownind','afb_ownind','ilp_ownind','cfw_ownind','fd_ownind','sl_ownind','fleece_ownind','conf_ownind','tww_ownind'];
+	 var own_len=ownindex.length;
+
+
+for (i=0;i<own_len;i++)
+		{
+		key=ownindex[i];
+		localStorage.setItem(key,'');
+		thename=''+ownindex[i];
+		document.getElementById(thename).value='';
+		}
+	document.getElementById('form_total').value='0';
+	$('#sbmtot').attr('disabled','disabled');	
+});
+	
+	
+	function testremove (thestring)
+	 {
+	 var tempchar=thestring.substring(0,1);
+
+		 if (tempchar=='+' || tempchar=='-')
+		 {
+		 thestring=thestring.slice(1);
+		
+		 }
+	  return thestring;	 
+	}
+
+});
+
+</script><div class='col-md-12' align=center><br/><div class='col-sm-12 textsize-grt' align=center><b>You selected the  Group Search  Action.  <br/> Back to Home Page: &nbsp;</b><a class='btn btn-danger btn-md' href="index.php?ppd=een&breed=">Home Page</a>&nbsp;&nbsp;</div></div><div class=col-md-12 align=center>&nbsp;</div><div class='col-md-12' align=center>Please login here in order to make use of SASmallstock mating program: <a class='btn btn-danger btn-md' href="session.php">Login</a></div><div class=col-md-12>&nbsp;</div><div class='col-md-10 col-md-offset-1'><div class=spacer>&nbsp;</div><div class=col-md-12><h3><b>Group Search</b></h3></div><form name="input" action="index.php" method="get"><input type="hidden" name="ppd" value="serv_list_sql"><input type="hidden" name="breed" value=""><div class=col-md-4><b>Select Breed:</b><select class=form-control name="sop_brd" id=soek_brd onchange="window.location='index.php?ppd=serv_list&breed=&sop_obj=&sop_reg=&sop_ebv=&sop_sex=&sop_gt=&filter1=&soek_lim=&sop_brd='+this.value"><option value='UN'>--Select Breed--</option><option value=BBG>Boergoat</option><option value=DAM>Damara</option><option value=DMS>Dohne Merino</option><option value=DOM>Dormer</option><option value=DOP>Dorper</option><option value=IDF>Ile de France</option><option value=KRG>Kalahari Red</option><option value=MMS>Meatmaster</option><option value=MER>Merino</option><option value=MLS>Merino Landskaap</option><option value=SAM>SA Mutton Merino</option><option value=SSG>Savannah Goats</option><option value=SUF>Suffolk</option><option value=VRS>Van Rooy</option><option value=DOPW>Wit Dorper</option></select>    </div>    <div class=col-md-4><b>Animal Status / Category:</b><select class=form-control name="sop_reg" onchange="window.location='index.php?ppd=serv_list&breed=&sop_obj=&sop_brd=&sop_sex=&sop_ebv=&sop_gt=&filter1=&soek_lim=&sop_reg='+this.value"><option value="A">Active and Alive</option><option value="ALL">All Animals on Database</option></select>    </div>    <div class=col-md-4><b>Select Sex:</b><select class=form-control name="sop_sex" onchange="window.location='index.php?ppd=serv_list&breed=&sop_obj=&sop_brd=&sop_reg=&sop_ebv=&sop_gt=&filter1=&soek_lim=&sop_sex='+this.value"><option value="M">Males</option><option value="F">Females</option><option value="ALL">All</option></select>    </div>    <div class=col-md-4><b>Animals to Display:</b><select class=form-control name="soek_lim" onchange="window.location='index.php?ppd=serv_list&breed=&sop_obj=&sop_brd=&sop_sex=&sop_ebv=&sop_gt=&filter1=&sop_reg=&soek_lim='+this.value"><option value="10">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option><option value="400">400</option></select>    </div>    <div class=col-md-4><b>Genotyped:</b><select class=form-control name="sop_gt" onchange="window.location='index.php?ppd=serv_list&breed=&sop_obj=&sop_brd=&sop_reg=&sop_ebv=&filter1=&sop_sex=&soek_lim=&sop_gt='+this.value"><option value="ALL">All Animals on Database</option><option value="GT">Genotyped Animals Only</option></select>    </div>    <div class=col-md-4><b>Breeding Objective:</b><select class=form-control name="sop_obj" id=soek_brd onchange="window.location='index.php?ppd=serv_list&breed=&sop_brd=&sop_ebv=&sop_reg=&sop_sex=&sop_gt=&filter1=&soek_lim=&sop_obj='+this.value"><optgroup label=Selection Values></optgroup><optgroup label=Own Defined Index><option value="own">Customize Your Own Index</option></optgroup><optgroup label=Weight Traits></optgroup><optgroup label=Fertility Traits></optgroup><optgroup label=Wool Traits></optgroup><optgroup label=RTU Traits></optgroup></select>    </div></div>  <div class='col-md-10 col-md-offset-1' align=center><h4 class=text-default><b><a class='btn btn-md btn-default' href='#filters' data-toggle='collapse'> Filters <i class='fa fa-arrows-v'></i></a></b></h4></div><div id=filters class='col-md-10 col-md-offset-1 bdr-black collapse'><div class=col-md-12 align=center>&nbsp;</div><div class='col-md-12'><div class='col-md-3'><b>Based on: </b></div><div class='col-md-3'><select class=form-control name="filter1" id=filter1><option value="IND">Breeding Indices</option><option value="EBV">Breeding Values</option></select></div></div><div class='col-md-12'>   </tr><div class=col-md-12>&nbsp;</div>
+		  <div class=col-md-3><b>Birth Year:</b></div>    <div class=col-md-6><select name="age1_sig" id=age1_sig><option value=">=">>=</option><option value=">=">>=</option><option value=">">></option><option value="=">=</option></select>&nbsp; <input  type="text" name="age1_val" id=age1_val maxlength="4" size="10" align="left" value=""/>&nbsp;&nbsp; and &nbsp; <select  name="age2_sig" id=age2_sig><option value="<="><=</option><option value="<="><=</option><option value="<"><</option></select>&nbsp;<input  type="text" name="age2_val" id=age2_val maxlength="4" size="10" align="left" value=""/></div><div class='col-md-12'>&nbsp;</div><div class='col-md-12 bg-danger lead'> <b>Traits</b>    </div><div class='col-md-12'>&nbsp;</div><div class='col-md-12 bg-success lead'> <b>Selection Indices</b>    </div><div class='col-md-12'>&nbsp;</div><div class='col-md-12 bg-warning lead'> <b>Weight Traits</b>    </div><div class='col-md-12'>&nbsp;</div><div class='col-md-12 bg-info lead'> <b>Fertility Traits</b>    </div>    <div class=col-md-12 align=center>&nbsp;</div></div></div>    <div class=col-md-12 align=center>&nbsp;</div> <div class=col-md-12 align=center id=submitbut><input class='btn btn-md btn-primary'  type="submit" value="SEARCH"    </div>  </table></div></form>     </td>    <td>    </td>   </tr>  </table><div class=col-md-12 align=center><br/><br/><div class='col-md-1 col-sm-1' align=center></div></div><div class=col-md-12 align=center><br/><br/><div class='col-md-1 col-sm-1' align=center></div></div><div class='col-md-10 col-md-offset-1 ' align=center ><h4><b>Disclaimer</b></h4>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#disclaimer2">
+Read  Disclaimer
+</button>
+
+<!-- Modal -->
+
+<div class="modal fade" id="disclaimer2" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="disclaimer2" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><b>TERMS OF SERVICE AND INDEMNITY</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      Alle lede en deelnemers van enige van SA Stamboek se dienste en/of gebruikers van enige verslae, advies of produkte en die inhoud daarvan beskikbaar op www.Logix.org.za, www.SABeefBulls.com, www.SADairyBulls.com, www.SASmallstock.com of enige ander webwerf of webblad gebaseerde diens wat deur SA Stamboek en Diereverbeteringsvereniging Vereniging aangebied word, vrywaar SA Stamboek en Diereverbeteringsvereniging, sy verwante en volfiliaalmaatskappye, sy raadslede, beamptes en werknemers teen enige eise vir enige verlies of skade, hetsy direk, indirek, gevolglik of andersins, wat voortspruit uit enige oorsaak hoegenaamd deelname aan, interpretasie van en die gebruik van sodanige verslae, advies of produkte en die inhoud daarvan op enige wyse ook al.
+<br/><br/><br/>
+
+
+
+All members and participants of any of SA Stud Book?s services and/or users of any reports, advice or products and the contents thereof available on www.logix.org.za, www.saBeefBulls.com, www.saDairyBulls.com, www.SASmallstock.com or any other web site or web site based service offered by SA Stud Book and Animal Improvement Association indemnify SA Stud Book and Animal Improvement Association, its associated and subsidiary companies, its councillors, officers and employees against any claims for any loss or damages, whether direct, indirect, consequential or otherwise, arising from any cause whatsoever from their participation in, interpretation of and using of such reports, advice or products and the contents thereof, in any way howsoever.
+<br/><br/><br/>
+
+
+<h4>Introduction</h4>
+This website is operated by SA Stud Book and Animal Improvement Association. The terms "we", "us", and "our" refer to SA Stud Book and Animal Improvement Association. The use of our website is subject to the following terms and conditions of use, as amended from time to time (the "Terms"). The Terms are to be read together by you, the user, with any terms, conditions or disclaimers provided in the pages of our website. Please review the Terms carefully. The Terms apply to all users of our website, including without limitation, users who are browsers, customers, merchants, vendors and/or contributors of content. If you access and use this website, you accept and agree to be bound by and comply with the Terms and our Privacy Policy. If you do not agree to the Terms or our Privacy Policy, you are not authorized to access our website, use any of our website's services, including reports, queries or place an order on our website. 
+<br/><br/> 
+Use of our Website and products emanating from our Website and/or Database
+<br/><br/> 
+You agree to use our website and products emanating from our Website and/or Database for legitimate purposes and not for any illegal or unauthorized purpose, including without limitation, in violation of any intellectual property or privacy law. By agreeing to the Terms, you represent and warrant that you are at least the age of majority in your country, state or province of residence and are legally capable of entering into a binding contract. 
+You agree to not use our website and products emanating from our Website and/or Database to conduct any activity that would constitute a civil or criminal offence or violate any law. You agree not to attempt to interfere with our website's network or security features or to gain unauthorized access to our systems. You furthermore agree not to tamper with, or to change in any way the products or contents of such products or reports emanating from our Website and/or Database.
+You agree to provide us with accurate personal information, such as your email address, mailing address and other contact details in order to render appropriate products and services or contact you as needed. You agree to promptly update your account and information. You authorize us to collect and use this information to contact you in accordance with our Privacy Policy. 
+<br/><br/> 
+<h4>General Conditions</h4>
+
+We reserve the right to refuse service to anyone, at any time, for any reason. We reserve the right to make any modifications to the website, including terminating, changing, suspending or discontinuing any aspect of the website at any time, without notice. We may impose additional rules or limits on the use of our website. We also reserve the right to amend, add or change any product and/or service emanating from our Website and/or Database. You agree to review the Terms regularly and your continued access or use of our website will mean that you agree to any changes. 
+You agree that we will not be liable to you or any third party for any modification, suspension or discontinuance of our website or for any service, content, feature or product offered through our website. You also agree that the interpretation, use and application of any product, feature and service from our Website and/or Database is entirely at your own risk and that we will not be liable to you and any third party in that regards.
+<br/><br/> 
+<h4>Products or Services</h4>
+
+All products and services through our website and/or Database are subject to availability and functionality at the time of request and/or purchase. We may, in our sole discretion, limit or cancel the type of product and/or service, quantities offered or limit the sales of our products or services to any organisation, company, person, household, geographic region or jurisdiction. Prices for our products and services are subject to change, without notice. Unless otherwise indicated, prices displayed on our website or in any other publication or other means are quoted in South African Rands or any other currency, as deemed fit. 
+We reserve the right, in our sole discretion, to refuse orders or any other services, including without limitation, orders and services that appear to be placed by distributors, advisors, agents or resellers. If we believe that you have made a false or fraudulent order or request for a service, we will be entitled to cancel the order and inform the relevant authorities. 
+Although extreme care is taken, and the acceptable scientific methodologies applied in censoring data, calculation of derived values, or any other means of reports and advice, we do not guarantee the accuracy of the products and services on our website, emanating from our Website and/or Database. 
+<br/><br/> 
+<h4>Links to Third-Party Websites</h4>
+
+Links from or to websites outside our website are meant for convenience only. We do not review, endorse, approve or control, and are not responsible for any sites linked from or to our website, the content of those sites, the third parties named therein, or their products and services. Linking to any other site is at your sole risk and we will not be responsible or liable for any damages in connection with linking. Links to downloadable software sites are for convenience only and we are not responsible or liable for any difficulties or consequences associated with downloading the software. Use of any downloaded software is governed by the terms of the license agreement, if any, which accompanies or is provided with the software. 
+<br/><br/> 
+<h4>Use Comments, Feedback, and Other Submissions </h4>
+
+You acknowledge that you are responsible for the information, profiles, opinions, messages, comments and any other content (collectively, the "Content") that you post, distribute or share on or through our website or services available in connection with our website. You further acknowledge that you have full responsibility for the Content, including but limited to, with respect to its legality, and its trademark, copyright and other intellectual property ownership. 
+You agree that any Content submitted by you in response to a request by us for a specific submission may be edited, adapted, modified, recreated, published, or distributed by us. You further agree that we are under no obligation to maintain any Content in confidence, to pay compensation for any Content or to respond to any Content. 
+You agree that you will not post, distribute or share any Content on our website that is protected by copyright, trademark, patent or any other proprietary right without the express consent of the owner of such proprietary right. You further agree that your Content will not be unlawful, abusive or obscene nor will it contain any malware or computer virus that could affect our website's operations. You will be solely liable for any Content that you make and its accuracy. We have no responsibility and assume no liability for any Content posted by you or any third-party. 
+We reserve the right to terminate your ability to access or post on our website and to remove and/or delete any Content that we deem objectionable. You consent to such removal and/or deletion and waive any claim against us for the removal and/or deletion of your Content. 
+<br/><br/> 
+<h4>Your Personal Information</h4>
+
+Please see our Privacy Policy to learn about how we collect, use, and share your personal information. 
+<br/><br/> 
+<h4>Errors and Omissions</h4>
+
+Please note that our website may contain typographical errors or inaccuracies and may not be complete or current. We reserve the right to correct any errors, inaccuracies or omissions and to change or update information at any time, without prior notice (including after an order, request for a service or report or any other product or service has been submitted). Such errors, inaccuracies or omissions may relate to product description, pricing, content, interpretation, advise, promotion and availability and we reserve the right to cancel or refuse any order or request for services or any other product, placed based on incorrect pricing or availability information, to the extent permitted by applicable law. 
+We do not undertake to update, modify or clarify information on our website, except as required by law. 
+<br/><br/> 
+<h4>Disclaimer and Limitation of Liability</h4>
+
+You assume all responsibility and risk with respect to your use of our website, the products or services emanating from our Website or any such services and products resulting from our Database, which is provided "as is" without warranties, representations or conditions of any kind, either express or implied, with regard to information accessed from or via our website or any other means, including without limitation, all content and materials, and functions and services provided on our website, all of which are provided without warranty of any kind, including but not limited to warranties concerning the availability, accuracy, completeness or usefulness of content or information, uninterrupted access, and any warranties of title, non-infringement, merchantability or fitness for a particular purpose. We do not warrant that our website or its functioning or the content and material of the services made available thereby will be timely, secure, uninterrupted or error-free, that defects will be corrected, or that our websites or the servers that make our website available are free of viruses or other harmful components. 
+The use of our website, the products or services emanating from our Website or any such services and products resulting from our Database, is at your sole risk and you assume full responsibility for any costs associated with your use of our website. We will not be liable for any damages of any kind related to the use of our website, the products or services emanating from our Website or any such services and products resulting from our Database. 
+In no event will we, or our affiliates, our or their respective content or service providers, or any of our or their respective directors, officers, agents, contractors, suppliers or employees be liable to you for any direct, indirect, special, incidental, consequential, exemplary or punitive damages, losses or causes of action, or lost revenue, lost profits, lost business or sales, or any other type of damage, whether based in contract or tort (including negligence), strict liability or otherwise, arising from your use of, or the inability to use, or the performance of, our website or the content or material or functionality through our website, even if we are advised of the possibility of such damages. 
+Certain jurisdictions do not allow limitation of liability or the exclusion or limitation of certain damages. In such jurisdictions, some or all of the above disclaimers, exclusions, or limitations, may not apply to you and our liability will be limited to the maximum extent permitted by law. 
+<br/><br/> 
+<h4>Indemnification</h4>
+
+You agree to defend and indemnify us, and hold us and our affiliates harmless, and our and their respective councillors, directors, officers, agents, contractors, and employees against any losses, liabilities, claims, expenses (including legal fees) in any way arising from, related to or in connection with your use of our website, your violation of the Terms, or the posting or transmission of any materials on or through the website by you, including but not limited to, any third party claim that any information or materials provided by you infringe upon any third party proprietary rights. 
+<br/><br/> 
+<h4>Entire Agreement</h4>
+
+The Terms and any documents expressly referred to in them represent the entire agreement between you and us in relation to the subject matter of the Terms and supersede any prior agreement, understanding or arrangement between you and us, whether oral or in writing. Both you and we acknowledge that, in entering into these Terms, neither you nor we have relied on any representation, undertaking or promise given by the other or implied from anything said or written between you and us prior to such Terms, except as expressly stated in the Terms. 
+<br/><br/> 
+<h4>Waiver</h4>
+
+Our failure to exercise or enforce any right or provision of the Terms will not constitute a waiver of such right or provision. A waiver by us of any default will not constitute a waiver of any subsequent default. No waiver by us is effective unless it is communicated to you in writing. 
+<br/><br/> 
+<h4>Headings</h4>
+
+Any headings and titles herein are for convenience only. 
+<br/><br/> 
+<h4>Severability</h4>
+
+If any of the provisions of the Terms are determined by any competent authority to be invalid, unlawful or unenforceable, such provision will to that extent be severed from the remaining Terms, which will continue to be valid and enforceable to the fullest extent permitted by law. 
+<br/><br/> 
+<h4>Governing Law</h4>
+
+Any disputes arising out of or relating to the Terms, the Privacy Policy, use of our website, or our products or services offered on our website or otherwise will be resolved in accordance with the laws of the Republic of South Africa without regard to its conflict of law rules. Any disputes, actions or proceedings relating to the Terms or your access to or use of our website must be brought before the courts of The Republic of South Africa and you irrevocably consent to the exclusive jurisdiction and venue of such courts. 
+<br/><br/> 
+<h4>Questions or Concerns</h4>
+
+Please send all questions, comments and feedback to us at info@studbook.co.za. 
+<br/><br/> 
+<h4 class='text-danger'>PRIVACY POLICY</h4>
+We are committed to maintaining the accuracy, confidentiality, and security of your personally identifiable information (\"Personal Information\"). As part of this commitment, our privacy policy governs our actions as they relate to the collection, use and disclosure of Personal Information. Our privacy policy is based upon the values and stipulations set in South African Law by means of the Protection of Personal Information Act, the Consumer Protection Act and the National Credit Act. 
+<br/><br/> 
+<h4>Introduction</h4>
+
+We are responsible for maintaining and protecting the Personal Information under our control. We have designated an individual or individuals who is/are responsible for compliance with our privacy policy. 
+<br/><br/> 
+<h4>Identifying Purposes</h4>
+
+We collect, use and disclose Personal Information to provide you with the product or services you have requested or have access to and to offer you additional products and services we believe you might be interested in. The purposes for which we collect Personal Information will be identified before or at the time we collect the information. In certain circumstances, the purposes for which information is collected may be clear, and consent may be implied, such as where your name, address and payment information are provided as part of the order process. 
+<br/><br/> 
+<h4>Consent</h4>
+
+Knowledge and consent are required for the collection, use or disclosure of Personal Information except where required or permitted by law. Providing us with your Personal Information is always your choice. However, your decision not to provide certain information may limit our ability to provide you with our products or services. We will not require you to consent to the collection, use, or disclosure of information as a condition to the supply of a product or service, except as required to be able to supply the product or service. 
+<br/><br/> 
+<h4>Limiting Collection</h4>
+
+The Personal Information collected will be limited to those details necessary for the purposes identified by us. With your consent, we may collect Personal Information from you in person, over the telephone or by corresponding with you via mail, facsimile, or the Internet. 
+<br/><br/> 
+<h4>Limiting Use, Disclosure and Retention</h4>
+
+Personal Information may only be used or disclosed for the purpose for which it was collected unless you have otherwise consented, or when it is required or permitted by law. Personal information will only be retained for the period of time required to fulfil the purpose for which we collected it or as may be required by law. 
+<br/><br/> 
+<h4>Accuracy</h4>
+
+Personal Information will be maintained in as accurate, complete and up-to-date form as is necessary to fulfil the purposes for which it is to be used. 
+<br/><br/> 
+<h4>Safeguarding Customer Information</h4>
+
+Personal Information will be protected by security safeguards that are appropriate to the sensitivity level of the information. We take all reasonable precautions to protect your Personal Information from any loss or unauthorized use, access or disclosure. 
+<br/><br/> 
+<h4>Openness</h4>
+
+We will make information available to you about our policies and practices with respect to the management of your Personal Information. 
+<br/><br/> 
+<h4>Customer Access</h4>
+
+Upon request, you will be informed of the existence, use and disclosure of your Personal Information, and will be given access to it. You may verify the accuracy and completeness of your Personal Information, and may request that it be amended, if appropriate. However, in certain circumstances permitted by law, we will not disclose certain information to you. For example, we may not disclose information relating to you if other individuals are referenced or if there are legal, security or commercial proprietary restrictions. 
+<br/><br/> 
+<h4>Handling Customer Complaints and Suggestions</h4>
+
+You may direct any questions or enquiries with respect to our privacy policy or our practices by email contact to info@studbook.co.za. 
+<br/><br/> 
+<h4>Additional Information</h4>
+<i>Cookies</i><br/> 
+A cookie is a small computer file or piece of information that may be stored in your computer's hard drive when you visit our websites. We may use or reserve the right to use cookies to improve our website's functionality and, in some cases, to provide visitors with a customized online experience. 
+Cookies are widely used, and most web browsers are configured initially to accept cookies automatically. You may change your Internet browser settings to prevent your computer from accepting cookies or to notify you when you receive a cookie so that you may decline its acceptance. Please note, however, if you disable cookies, you may not experience optimal performance of our website. 
+<br/>
+<br/>
+<i>Other Websites</i>
+<br/>
+Our website may contain links to other third-party sites that are not governed by this privacy policy. Although we endeavour to only link to sites with high privacy standards, our privacy policy will no longer apply once you leave our website. Additionally, we are not responsible for the privacy practices employed by third party websites. Therefore, we suggest that you examine the privacy statements of those sites to learn how your information may be collected, used, shared and disclosed.
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+</div><div class=col-lg-12>&nbsp;</div><div class='col-md-6 col-md-offset-3' align=center><h5 class=inv>SA Stud Book Test Page <br/>Copywrite @ SA Smallstock 2021</h5></div></body></html>
+
+
+
+

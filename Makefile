@@ -6,6 +6,3 @@ build:
 
 update:
 	cargo update --manifest-path=src-tauri/Cargo.toml
-
-compile:
-	docker compose  -f "docker-compose.yaml" up --build rust_cross_compile_msvc 
