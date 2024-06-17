@@ -1,5 +1,5 @@
 use serde::Serialize;
-use serde_json::to_string_pretty;
+use serde_json::{ to_string, to_string_pretty };
 use std::error::Error;
 
 use crate::logging::log_with_context;
@@ -47,6 +47,6 @@ pub async fn process_and_return_json(breeds: Vec<Breed>) -> Result<String, Box<d
 
     log_with_context(module_path!(), line!(), "Parsed data");
 
-    let json = to_string_pretty(&breed_data)?;
+    let json = to_string(&breed_data)?;
     Ok(json)
 }

@@ -10,6 +10,7 @@ async function inv_greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
     greetMsgEl.textContent = await invoke("greet",{name: greetInputEl.value});
 }
+
 async function inv_get_os_info() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
     greetMsgEl.textContent = await invoke("get_os_info",{
@@ -83,26 +84,4 @@ window.addEventListener("DOMContentLoaded",() => {
     updateTime();
     setInterval(updateTime,1000);
 
-
-    btnSelectFile.addEventListener("click",() => {
-        fileInput.click();
-    });
-
-
-
-    fileInput.addEventListener("change",() => {
-        if(fileInput.value) {
-            console.log(fileInput.value);
-        } else {
-            filePathDisplay.textContent = "Файл не выбран";
-        }
-    });
-
-    btnDisplayFilePath.addEventListener("click",() => {
-        if(fileInput.value) {
-            filePathDisplay.textContent = fileInput.value;
-        } else {
-            filePathDisplay.textContent = "Файл не выбран";
-        }
-    });
 });

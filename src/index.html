@@ -1,187 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="mainApp">
     <head>
         <meta charset="UTF-8" />
-        <!-- <link rel="stylesheet" href="styles.css" /> -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="bootstrap-5.3.3/dist/css/bootstrap.min.css"
-            rel="stylesheet">
+        <link
+            href="bootstrap-5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
         <title>Плинор: парсер животных</title>
-        <script type="module" src="/main.js" defer></script>
-        <script src="bootstrap-5.3.3/dist/js/bootstrap.min.js"></script>
-        <script src="bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="app.js"></script>
     </head>
-
-    <body ng-app="purchaseApp">
+    <body>
         <div class="container">
-            <h1>Мое первое приложение</h1>
-
-            <div id="time-container">
-                <h1>Текущее время:</h1>
-                <p id="time"></p>
-
-                <form class="row" id="file-form">
-                    <input type="file" id="file-input" />
-                    <button id="btn-select-file" type="button">Select
-                        File</button>
-                </form>
-                <p id="file-path-display"></p>
-                <button id="btn-display-file-path">Вывести полный путь до
-                    файла</button>
-
-                <form class="row" id="greet-form">
-                    <input id="greet-input" placeholder="Enter a name..." />
-                    <button id="btn_greet" type="submit">Вызвать метод
-                        greet</button>
-                    <br />
-                    <button id="btn_submit_get_os_info" type="submit">
-                        Информация о ОС
-                    </button> <button id="btn-get_html_table_list_animals"
-                        type="submit">
-                        TEST async fn
-                    </button>
-                </form>
-
-                <p id="greet-msg"></p>
-                <p id="get_os_info-msg"></p>
+            <div ng-controller="TimeController">
+                <h1>Мое первое приложение</h1>
+                <div id="time-container">
+                    <h1>Текущее время:</h1>
+                    <p>{{currentTime}}</p>
+                </div>
             </div>
-            <form>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email
-                        address</label>
-                    <input type="email" class="form-control"
-                        id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">We'll never share your
-                        email with anyone else.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1"
-                        class="form-label">Password</label>
-                    <input type="password" class="form-control"
-                        id="exampleInputPassword1">
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle"
-                        type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Dropdown button
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item"
-                                href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another
-                                action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else
-                                here</a></li>
-                    </ul>
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input"
-                        id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me
-                        out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div ng-controller="BreedController">
+                <label for="breed-select">Выберите породу:</label>
+                <select
+                    id="breed-select"
+                    ng-model="selectedBreed"
+                    ng-options="breed.name_short as breed.name for breed in breeds"
+                ></select>
+                <button ng-click="refreshBreeds()">Обновить список</button>
+            </div>
         </div>
-        <div ng-controller="purchaseController">
-
-            <div class="page-header">
-                <h1> Список покупок </h1>
-            </div>
-            <div class="panel">
-                <div class="form-inline">
-                    <div class="form-group">
-                        <div class="col-md-8">
-                            <input class="form-control" ng-model="text"
-                                placeholder="Название" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-6">
-                            <input type="number" class="form-control"
-                                ng-model="price" placeholder="Цена" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-8">
-                            <button class="btn btn-default"
-                                ng-click="addItem(text, price)">Добавить</button>
-                        </div>
-                    </div>
-                </div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Предмет</th>
-                            <th>Цена</th>
-                            <th>Куплено</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="item in list.items">
-                            <td>{{item.purchase}}</td>
-                            <td>{{item.price}}</td>
-                            <td><input type="checkbox"
-                                    ng-model="item.done" /></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-        <script
-            src="assets/angular.min.js"></script>
-        <script>
-var model = {
-    items: [
-        { purchase: "Хлеб", done: false, price: 15.9 },
-        { purchase: "Масло", done: false, price: 60 },
-        { purchase: "Картофель", done: true, price: 22.6 },
-        { purchase: "Сыр", done: false, price:310 }
-    ]
-};
-var purchaseApp = angular.module("purchaseApp", []);
-    purchaseApp.controller("purchaseController", function ($scope) {
-    $scope.list = model;
-    $scope.addItem = function (text, price) {
-        price = parseFloat(price); // преобразуем введенное значение к числу
-        if(text != "" && !isNaN(price)) // если текст установлен и введено число, то добавляем
-        {
-            $scope.list.items.push({ purchase: text, price: price, done: false });
-        }
-    }
-});
-</script>
-
     </body>
 </html>

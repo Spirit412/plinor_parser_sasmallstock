@@ -1,7 +1,8 @@
 use scraper::{ Html, Selector };
 use std::error::Error;
+use serde::Serialize;
 
-#[derive(Debug)]
+#[derive(Serialize, Debug)]
 pub struct Breed {
     pub name: String,
     pub name_short: String,
