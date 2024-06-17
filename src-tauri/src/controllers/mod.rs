@@ -2,6 +2,7 @@ mod http_client;
 mod html_parser;
 mod data_processor;
 
+use crate::config;
 use http_client::fetch_html;
 use html_parser::parse_breeds;
 use data_processor::process_and_return_json;
@@ -47,9 +48,12 @@ pub fn get_current_time() -> String {
 #[tokio::main]
 #[tauri::command]
 pub async fn get_breeds() -> String {
-    let url = "https://www.sasmallstock.com/index.php?ppd=serv_list&breed=";
+
+    let base_url = &config::CONFIG.base_url;
+
+    let url = base_url.to_string() + "index.php?ppd=serv_list&breed=";
     log_with_context(module_path!(), line!(), "Starting fetch_html");
-    let html = fetch_html(url).await.expect("Failed to fetch HTML");
+    let html = fetch_html(&url).await.expect("Failed to fetch HTML");
     log_with_context(module_path!(), line!(), "HTML fetched, starting parse_breeds");
     let breeds = parse_breeds(&html).await.expect("Failed to parse breeds");
     log_with_context(module_path!(), line!(), "Breeds parsed, starting process_and_return_json");
