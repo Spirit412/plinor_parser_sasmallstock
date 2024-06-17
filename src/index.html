@@ -28,6 +28,25 @@
                     ng-options="breed.name_short as breed.name for breed in breeds"
                 ></select>
                 <button ng-click="refreshBreeds()">Обновить список</button>
+
+                <br />
+                <label for="limit-input">Лимит:</label>
+                <input
+                    id="limit-input"
+                    type="number"
+                    ng-model="limit"
+                    min="1"
+                    required
+                />
+                <br />
+                <label for="sex-select">Пол:</label>
+                <select
+                    id="sex-select"
+                    ng-model="sex"
+                    ng-options="option as option for option in ['ALL', 'F', 'M']"
+                    ng-init="sex='ALL'"
+                ></select>
+                <br />
             </div>
         </div>
     </body>
