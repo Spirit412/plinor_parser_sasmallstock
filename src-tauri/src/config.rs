@@ -5,6 +5,7 @@ use lazy_static::lazy_static;
 
 
 #[derive(Debug, Validate, Deserialize)]
+#[allow(dead_code)]
 pub struct Config {
     #[validate(length(min = 1))]
     pub database_file_name: String,
