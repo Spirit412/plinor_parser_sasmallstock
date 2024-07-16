@@ -1,6 +1,39 @@
 // app.js
 var mainApp = angular.module("mainApp", []);
 
+mainApp.controller("ProgressBarController", [
+    "$scope",
+    function ($scope) {
+        var ctrl = this;
+        ctrl.progress = 0;
+        var unlisten;
+
+        async function setupProgressListener() {
+            unlisten = await window.__TAURI__.event.listen(
+                "progress",
+                (event) => {
+                    console.info(parseFloat(event.payload));
+                    ctrl.progress = parseFloat(event.payload);
+                    $scope.$apply(); // Обновление AngularJS scope
+                }
+            );
+        }
+
+        ctrl.runJob = function () {
+            ctrl.progress = 0;
+            window.__TAURI__.invoke("long_running_job");
+        };
+
+        setupProgressListener();
+
+        $scope.$on("$destroy", function () {
+            if (unlisten) {
+                unlisten();
+            }
+        });
+    },
+]);
+
 mainApp.service("TimeService", [
     "$q",
     function ($q) {
@@ -152,7 +185,7 @@ mainApp.controller("BreedController", [
                     } else {
                         $scope.selectedBreed = null; // Или другое значение по умолчанию
                     }
-                    
+
                     // $scope.selectedBreed = breeds[0].name_short; // Set default selection
                 })
                 .catch(function (error) {
