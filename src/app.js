@@ -199,3 +199,35 @@ mainApp.controller("BreedController", [
         });
     },
 ]);
+
+mainApp.controller('MainCtrl', ['$scope', function($scope) {
+    $scope.label_text = "Обработай меня";
+
+    const { invoke } = window.__TAURI__.tauri;
+
+    // Функция для генерации UUID v4
+    const uuidv4 = () => ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+
+    // Функция для отправки сообщения на бекенд при нажатии кнопки
+    $scope.sendToBackend = function() {
+        const message = {
+            function: "click_button",
+            data: { text: $scope.label_text },
+            uuid4: uuidv4(),
+            response_queue: "backend_to_frontend"
+        };
+        invoke('frontend_to_backend', { payload: JSON.stringify(message) });
+    };
+
+    // Слушатель для получения сообщений от бекенда
+    window.addEventListener('backend_to_frontend', function(event) {
+        const message = JSON.parse(event.detail);
+        if (message.function === "front_click_button") {
+            $scope.$apply(function() {
+                $scope.label_text = message.data.processed_data;
+            });
+        }
+    });
+}]);

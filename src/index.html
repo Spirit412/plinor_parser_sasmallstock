@@ -1,66 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="mainApp">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link
             href="bootstrap-5.3.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
+    />
+    <title>Плинор: парсер животных</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+<div class="container">
+    <div ng-controller="TimeController">
+        <h1>Мое первое приложение</h1>
+        <div id="time-container">
+            <h1>Текущее время:</h1>
+            <p>{{currentTime}}</p>
+        </div>
+    </div>
+    <div ng-controller="BreedController">
+        <label for="breed-select">Выберите породу:</label>
+        <select
+                id="breed-select"
+                ng-model="selectedBreed"
+                ng-options="breed.name_short as breed.name for breed in breeds"
+        ></select>
+        <button ng-click="refreshBreeds()">Обновить список</button>
+
+        <br/>
+        <label for="limit-input">Лимит:</label>
+        <input
+                id="limit-input"
+                type="number"
+                ng-model="limit"
+                min="1"
+                required
         />
-        <title>Плинор: парсер животных</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-        <script src="app.js"></script>
-    </head>
-    <body>
-        <div class="container">
-            <div ng-controller="TimeController">
-                <h1>Мое первое приложение</h1>
-                <div id="time-container">
-                    <h1>Текущее время:</h1>
-                    <p>{{currentTime}}</p>
-                </div>
-            </div>
-            <div ng-controller="BreedController">
-                <label for="breed-select">Выберите породу:</label>
-                <select
-                    id="breed-select"
-                    ng-model="selectedBreed"
-                    ng-options="breed.name_short as breed.name for breed in breeds"
-                ></select>
-                <button ng-click="refreshBreeds()">Обновить список</button>
+        <br/>
+        <label for="sex-select">Пол:</label>
+        <select
+                id="sex-select"
+                ng-model="sex"
+                ng-options="option as option for option in ['ALL', 'F', 'M']"
+                ng-init="sex='ALL'"
+        ></select>
+        <br/>
 
-                <br />
-                <label for="limit-input">Лимит:</label>
-                <input
-                    id="limit-input"
-                    type="number"
-                    ng-model="limit"
-                    min="1"
-                    required
-                />
-                <br />
-                <label for="sex-select">Пол:</label>
-                <select
-                    id="sex-select"
-                    ng-model="sex"
-                    ng-options="option as option for option in ['ALL', 'F', 'M']"
-                    ng-init="sex='ALL'"
-                ></select>
-                <br />
-
-                <div ng-controller="ProgressBarController as ctrl">
-                    <h2 class="text-2xl">Example 1: Progress Bar</h2>
-                    <button ng-click="ctrl.runJob()">Run Job</button>
-                    <div class="flex mt-5 space-x-4">
-                        <progress
-                            value="{{ ctrl.progress }}"
-                            max="100"
-                        ></progress>
-                        <span>{{ ctrl.progress }}/100%</span>
-                    </div>
-                </div>
-                
+        <div ng-controller="ProgressBarController as ctrl">
+            <h2 class="text-2xl">Example 1: Progress Bar</h2>
+            <button ng-click="ctrl.runJob()">Run Job</button>
+            <div class="flex mt-5 space-x-4">
+                <progress
+                        value="{{ ctrl.progress }}"
+                        max="100"
+                ></progress>
+                <span>{{ ctrl.progress }}/100%</span>
             </div>
         </div>
-    </body>
+        <div ng-controller="MainCtrl">
+            <button ng-click="sendToBackend()">Send to Backend</button>
+            <label>{{ label_text }}</label>
+        </div>
+    </div>
+</div>
+</body>
 </html>
