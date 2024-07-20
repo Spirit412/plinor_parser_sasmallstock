@@ -3,7 +3,6 @@
 mod controllers; // Импортируйте модуль, содержащий функции
 mod config;
 pub mod logging;
-mod requests;
 use tauri::AppHandle;
 use logging::{init_logging, log_with_context};
 use dotenv::dotenv;
