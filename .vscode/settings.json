@@ -2,4 +2,9 @@
     "cSpell.words": [
         "reqwest"
     ]
+    "window.title": "RUST-TAURI: ${dirty}${activeEditorShort}${separator}${rootName}${separator}${profileName}${separator}${appName}",
+    
+    "[rust]": {
+        "editor.semanticHighlighting.enabled": false
+    }
 }
