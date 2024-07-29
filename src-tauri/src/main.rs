@@ -4,15 +4,40 @@ mod controllers; // Импортируйте модуль, содержащий 
 mod config;
 pub mod logging;
 use tauri::AppHandle;
-use logging::{init_logging, log_with_context};
+use logging::{ init_logging, log_with_context };
 use dotenv::dotenv;
 
-use tauri::{Manager, Runtime};
-use serde::{Deserialize, Serialize};
+use tauri::{ Manager, Runtime };
+use serde::{ Deserialize, Serialize };
 // use uuid::Uuid;
 use tokio::sync::Mutex;
 use std::sync::Arc;
 
+/// Структура сообщения
+///
+/// Представляет сообщение, которое может быть использовано для передачи данных между компонентами приложения.
+///
+/// # Поля структуры
+///
+/// - `function`: строка, название функции, которая должна быть вызвана
+/// - `data`: `serde_json::Value`, данные в формате JSON, которые будут переданы в функцию
+/// - `uuid4`: строка, уникальный идентификатор сообщения
+/// - `response_queue`: строка, имя очереди, в которую будет отправлен ответ
+///
+/// # Примеры
+///
+/// ```
+/// use serde_json::json;
+///
+/// let message = Message {
+///     function: "my_function".to_string(),
+///     data: json!({"key": "value"}),
+///     uuid4: "123e4567-e89b-12d3-a456-426655440000".to_string(),
+///     response_queue: "my_queue".to_string(),
+/// };
+///
+/// println!("{:?}", message);
+/// ```
 // Структура для сериализации и десериализации сообщений
 #[derive(Serialize, Deserialize, Debug)]
 struct Message {
@@ -22,7 +47,27 @@ struct Message {
     response_queue: String, // Имя очереди для ответа
 }
 
-
+/// Имитирует длительный процесс
+///
+/// Имитирует длительный процесс, отправляя прогресс в окно через событие "progress".
+///
+/// # Параметры
+///
+/// - `window`: `tauri::Window<R>`, окно, в котором будет отправляться прогресс
+///
+/// # Примеры
+///
+/// ```
+/// use tauri::Runtime;
+///
+/// #[tauri::command]
+/// async fn long_running_job<R: Runtime>(window: tauri::Window<R>) {
+///     for i in 0..101 {
+///         window.emit("progress", i).unwrap();
+///         std::thread::sleep(std::time::Duration::from_millis(40));
+///     }
+/// }
+/// ```
 #[tauri::command]
 async fn long_running_job<R: Runtime>(window: tauri::Window<R>) {
     for i in 0..101 {
@@ -38,7 +83,8 @@ fn main() {
     dotenv().ok();
     let base_url = &config::CONFIG.base_url;
     println!("Базовый урл {}", base_url);
-    tauri::Builder::default()
+    tauri::Builder
+        ::default()
         .setup(|app| {
             // Создаем Arc<Mutex<AppHandle>> для безопасного доступа к AppHandle из асинхронной задачи
             let app_handle = Arc::new(Mutex::new(app.handle()));
@@ -74,7 +120,40 @@ fn main() {
         .expect("error while running tauri application");
 }
 
-// Асинхронная функция для обработки сообщений от фронтенда
+/// Асинхронная функция для обработки сообщений от фронтенда
+///
+/// Обрабатывает сообщение от фронтенда и выполняет соответствующую функцию.
+///
+/// # Параметры
+///
+/// - `app_handle`: `Arc<Mutex<AppHandle>>`, управляющая приложением
+/// - `message`: `Message`, сообщение от фронтенда
+///
+/// # Примеры
+///
+/// ```
+/// use serde_json::to_string;
+///
+/// async fn handle_frontend_message(app_handle: Arc<Mutex<AppHandle>>, message: Message) {
+///     match message.function.as_str() {
+///         "click_button" => {
+///             let result = click_button(message.data).await;
+///             let response_queue = message.response_queue.clone();
+///             let response = Message {
+///                 function: "front_click_button".to_string(),
+///                 data: result,
+///                 uuid4: message.uuid4,
+///                 response_queue: response_queue.clone(),
+///             };
+///             let app = app_handle.lock().await;
+///             app.emit_all(&response_queue, to_string(&response).unwrap()).unwrap();
+///         }
+///         _ => {
+///             // Обработка других функций
+///         }
+///     }
+/// }
+/// ```
 async fn handle_frontend_message(app_handle: Arc<Mutex<AppHandle>>, message: Message) {
     match message.function.as_str() {
         "click_button" => {
@@ -95,7 +174,23 @@ async fn handle_frontend_message(app_handle: Arc<Mutex<AppHandle>>, message: Mes
     }
 }
 
-// Асинхронная функция для обработки данных
+/// Асинхронная функция для обработки данных и возврата результата в формате JSON.
+///
+/// # Аргументы
+///
+/// * `data` - Данные для обработки в формате serde_json::Value.
+///
+/// # Возвращает
+///
+/// Возвращает обработанные данные в формате JSON с определенной структурой.
+///
+/// # Примеры
+///
+/// ```
+/// let data = serde_json::json!({"text": "пример"});
+/// let result = click_button(data).await;
+/// assert_eq!(result["processed_data"], "пример-от бекенда");
+///
 async fn click_button(data: serde_json::Value) -> serde_json::Value {
     // Обработка данных и возвращение результата в формате JSON
     serde_json::json!({
