@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+#![allow(dead_code, unused_variables)]
 /*
 Этот файл содержит код для определения моделей или структур базы данных. 
 Он определяет структуру таблиц или коллекций в вашей базе данных и соответствующие поля.
@@ -150,7 +150,6 @@ impl AnimalsData {
                 id_animal TEXT UNIQUE,
                 byear TEXT,
                 inbred TEXT,
-                status TEXT,
                 sex TEXT,
                 lmi_1 TEXT,
                 lmi_2 TEXT,
@@ -255,7 +254,6 @@ impl AnimalsData {
             "id_animal",
             "byear",
             "inbred",
-            "status",
             "sex",
             "lmi_1",
             "lmi_2",

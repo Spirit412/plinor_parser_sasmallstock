@@ -1,3 +1,4 @@
+#![allow(dead_code, unused_variables)]
 use log::{ info, LevelFilter };
 use simple_logging;
 use chrono::Local;

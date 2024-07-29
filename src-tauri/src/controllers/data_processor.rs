@@ -1,3 +1,4 @@
+#![allow(dead_code, unused_variables)]
 use serde::Serialize;
 use serde_json::{ to_string, to_string_pretty };
 use std::error::Error;

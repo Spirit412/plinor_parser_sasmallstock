@@ -1,3 +1,4 @@
+#![allow(dead_code, unused_variables)]
 use reqwest::Client;
 use std::error::Error;
 

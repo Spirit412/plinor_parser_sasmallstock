@@ -1,7 +1,8 @@
+#![allow(dead_code, unused_variables)]
 mod http_client;
 mod html_parser;
 mod data_processor;
-
+use chrono::{ Utc };
 #[path = "../database/models.rs"]
 mod models;
 #[path = "../database/connection.rs"]
@@ -12,7 +13,7 @@ mod logging;
 
 use crate::config;
 use http_client::fetch_html;
-use html_parser::{ parse_breeds, get_table_head };
+use html_parser::{ parse_breeds, get_table_head, get_table_row };
 use data_processor::process_and_return_json;
 use std::process::Command;
 use chrono::Local;
@@ -119,8 +120,6 @@ pub async fn set_animals_to_db(
     # Парсим заголовок таблицы животных, получая список столбцов => header_columns
     # На основе списка создаём таблицу животных в БД SQLite. Для указанной пароды=sop_brd. Поля таблицы из header_columns. Тип String
     # Парсим каждую строку таблицы в асоциативный массив, где ключ из header_columns. Каждую строку записываем в БД
-    
-    
     */
 
     log_with_context(
@@ -149,18 +148,122 @@ pub async fn set_animals_to_db(
     let header_columns: Vec<String> = get_table_head(&html).await.expect(
         "Ошибка получения заголовока таблицы животных, получая список столбцов"
     );
-    println!("Ответ от функции # module:{}, line:{}, data:{:#?}", module_path!(), line!(), header_columns.join(", "));
+    println!(
+        "Ответ от функции header_columns # module:{}, line:{}, data:{:#?}",
+        module_path!(),
+        line!(),
+        &header_columns.join(", ")
+    );
 
-    log_with_context(module_path!(), line!(), "Начинаем создание таблицы животных в БД");
+    let table_rows: Vec<Vec<String>> = get_table_row(&html, &config::CONFIG.base_url).await.expect(
+        "Ошибка получения списка строк таблицы животных"
+    );
+
+    println!(
+        "Ответ от функции table_rows # module:{}, line:{}, data:{:#?}",
+        module_path!(),
+        line!(),
+        &table_rows
+    );
+
+    let animals_data_list: Vec<models::AnimalsData> = table_rows
+        .iter()
+        .map(|row: &Vec<String>| models::AnimalsData {
+            id: None,
+            create_at: Utc::now().to_rfc3339(),
+            update_at: Utc::now().to_rfc3339(),
+            o: row[0].clone().to_string(),
+            m: row[1].clone(),
+            oo: row[2].clone(),
+            mo: row[3].clone(),
+            om: row[4].clone(),
+            mm: row[5].clone(),
+            flock_name: row[6].clone(),
+            herd_book_section: row[7].clone(),
+            inbreeding: row[8].clone(),
+            keeper: row[9].clone(),
+            owner: row[10].clone(),
+            weaned_progeny: row[11].clone(),
+            flocks_with_weaned_progeny: row[12].clone(),
+            daughters_with_weaned_progeny: row[13].clone(),
+            flocks_with_daughters_with_weaned_progeny: row[14].clone(),
+            pre_wean_direct: row[15].clone(),
+            pre_wean_maternal: row[16].clone(),
+            wean_direct: row[17].clone(),
+            wean_maternal: row[18].clone(),
+            pre_wean_combined: row[19].clone(),
+            wean_combined: row[20].clone(),
+            post_wean_direct: row[21].clone(),
+            number_of_lambs_weaned: row[22].clone(),
+            total_weight_weaned: row[23].clone(),
+            age_at_first_lambing: row[24].clone(),
+            inter_lamb_period: row[25].clone(),
+            growth_index: row[26].clone(),
+            reproduction_index: row[27].clone(),
+            logix_merit_index: row[28].clone(),
+            dorper_logix_merit_index: row[29].clone(),
+            url_animal_card: row[30].clone(),
+            breed: row[31].clone(),
+            parse_card: row[32].clone(),
+            fdm: row[33].clone(),
+            name: row[34].clone(),
+            comp_no: row[35].clone(),
+            id_animal: row[36].clone(),
+            byear: row[37].clone(),
+            inbred: row[38].clone(),
+            status: row[39].clone(),
+            sex: row[40].clone(),
+            lmi_1: row[41].clone(),
+            lmi_2: row[42].clone(),
+            lmi_3: row[43].clone(),
+            lmi_4: row[44].clone(),
+            growth_ind_1: row[45].clone(),
+            growth_ind_2: row[46].clone(),
+            growth_ind_3: row[47].clone(),
+            growth_ind_4: row[48].clone(),
+            reprod_ind_1: row[49].clone(),
+            reprod_ind_2: row[0].clone(),
+            reprod_ind_3: row[0].clone(),
+            reprod_ind_4: row[0].clone(),
+            wean_dir_1: row[0].clone(),
+            wean_dir_2: row[0].clone(),
+            wean_dir_3: row[0].clone(),
+            wean_dir_4: row[0].clone(),
+            wean_mat_1: row[0].clone(),
+            wean_mat_2: row[0].clone(),
+            wean_mat_3: row[0].clone(),
+            wean_mat_4: row[0].clone(),
+            wean_comb_1: row[0].clone(),
+            wean_comb_2: row[0].clone(),
+            wean_comb_3: row[0].clone(),
+            wean_comb_4: row[0].clone(),
+            n_lambs_weaned_1: row[0].clone(),
+            n_lambs_weaned_2: row[0].clone(),
+            n_lambs_weaned_3: row[0].clone(),
+            n_lambs_weaned_4: row[0].clone(),
+            tww_1: row[0].clone(),
+            tww_2: row[0].clone(),
+            tww_3: row[0].clone(),
+            tww_4: row[0].clone(),
+            afl_1: row[0].clone(),
+            afl_2: row[0].clone(),
+            afl_3: row[0].clone(),
+            afl_4: row[0].clone(),
+            ilp_1: row[0].clone(),
+            ilp_2: row[0].clone(),
+            ilp_3: row[0].clone(),
+            ilp_4: row[0].clone(),
+        })
+        .collect();
+
     // Инициализация БАЗЫ ДАННЫХ SQLite
     let conn = connection::get_connection().expect("Ошибка инициализации подключения к БД");
-    let animals_data = models::AnimalsData::create_table(&conn).unwrap();
-    println!("Ответ  # module:{}, line:{}, data:{:#?}", module_path!(), line!(),animals_data);
-    // Создание таблицы animals с данными в БД SQLite
-    // Создание столбцов таблицы animals с данными в БД SQLite
-    // Запись данных в столбцы таблицы animals с данными в БД SQLite
-    
-
-
+    models::AnimalsData::create_table(&conn).unwrap();
+    println!(
+        "Ответ  # module:{}, line:{}, msg:{:#?}",
+        module_path!(),
+        line!(),
+        "Таблица animals в БД SQLite создана"
+    );
     header_columns
 }

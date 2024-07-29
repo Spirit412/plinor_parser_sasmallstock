@@ -1,6 +1,9 @@
+#![allow(dead_code, unused_variables)]
 use scraper::{ Html, Selector };
 use std::error::Error;
 use serde::Serialize;
+#[path = "../config.rs"]
+mod config;
 
 #[derive(Serialize, Debug)]
 pub struct Breed {
@@ -8,7 +11,6 @@ pub struct Breed {
     pub name_short: String,
 }
 
-#[allow(dead_code)]
 impl Breed {
     // Метод для поиска name по name_short без учета регистра
     pub fn find_name_by_short(&self, short: &str) -> Option<&str> {
@@ -98,4 +100,59 @@ pub async fn get_table_head(
     } else {
         Err("Заголовок таблицы не найден".into())
     }
+}
+
+/// Парсим строки таблицы. На выходе получаем список строк
+pub async fn get_table_row(
+    table_html: &str,
+    base_url: &str
+) -> Result<Vec<Vec<String>>, Box<dyn std::error::Error>> {
+    let mut result: Vec<Vec<String>> = Vec::new();
+    let html = Html::parse_document(table_html);
+
+    let table_body_selector = Selector::parse("tbody").unwrap();
+    let table_body = html.select(&table_body_selector).next().ok_or("Table body not found")?;
+
+    let table_body_rows_selector = Selector::parse("tr").unwrap();
+    let table_body_rows: scraper::element_ref::Select = table_body.select(
+        &table_body_rows_selector
+    );
+    // if table_body_rows.len() == 0 {
+    //     return Err("Строки таблицы не найдены. Возможно таблица пустая.".into());
+    // }
+
+    for row in table_body_rows {
+        let mut result_list_value_cell: Vec<String> = Vec::new();
+
+        let cell_selector = Selector::parse("td[align=\"left\"]").unwrap();
+        let cell = row.select(&cell_selector).next().ok_or("Cell not found")?;
+
+        let link_selector = Selector::parse("a").unwrap();
+        let link = cell.select(&link_selector).next().ok_or("Link not found")?;
+
+        if let Some(href) = link.value().attr("href") {
+            if !href.is_empty() {
+                result_list_value_cell.push(
+                    format!("{}{}", base_url, href.replace(" ", "").trim())
+                );
+            }
+        }
+
+        let list_value_cell: Vec<_> = row
+            .text()
+            .filter(|text| !text.is_empty())
+            .collect();
+
+        let list_value_cell: Vec<_> = list_value_cell
+            .iter()
+            .enumerate()
+            .filter(|(i, _)| i % 5 != 0)
+            .map(|(_, v)| v.trim().to_lowercase())
+            .collect();
+
+        result_list_value_cell.extend(list_value_cell);
+        result.push(result_list_value_cell);
+    }
+
+    Ok(result)
 }
