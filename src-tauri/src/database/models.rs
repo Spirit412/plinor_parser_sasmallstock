@@ -1,10 +1,11 @@
-/* 
+#![allow(dead_code)]
+/*
 Этот файл содержит код для определения моделей или структур базы данных. 
 Он определяет структуру таблиц или коллекций в вашей базе данных и соответствующие поля.
 */
-
-use rusqlite::{ params, Connection, Result };
-use chrono::{ DateTime, Utc };
+use std::collections::HashMap;
+use rusqlite::{Connection, Result };
+use chrono::{ Utc };
 
 #[derive(Debug)]
 pub struct AnimalsData {

@@ -1,4 +1,4 @@
-use scraper::{ ElementRef, Html, Selector };
+use scraper::{ Html, Selector };
 use std::error::Error;
 use serde::Serialize;
 

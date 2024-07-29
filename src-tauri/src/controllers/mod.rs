@@ -2,8 +2,13 @@ mod http_client;
 mod html_parser;
 mod data_processor;
 
-use crate::database::models::AnimalsData;
-use crate::database::connection::get_connection;
+#[path = "../database/models.rs"]
+mod models;
+#[path = "../database/connection.rs"]
+mod connection;
+
+#[path = "../logging.rs"]
+mod logging;
 
 use crate::config;
 use http_client::fetch_html;
@@ -148,8 +153,9 @@ pub async fn set_animals_to_db(
 
     log_with_context(module_path!(), line!(), "Начинаем создание таблицы животных в БД");
     // Инициализация БАЗЫ ДАННЫХ SQLite
-    conn = get_connection().expect("Ошибка инициализации подключения к БД");
-    let animals_data = AnimalsData::create_table(&conn).unwrap();
+    let conn = connection::get_connection().expect("Ошибка инициализации подключения к БД");
+    let animals_data = models::AnimalsData::create_table(&conn).unwrap();
+    println!("Ответ  # module:{}, line:{}, data:{:#?}", module_path!(), line!(),animals_data);
     // Создание таблицы animals с данными в БД SQLite
     // Создание столбцов таблицы animals с данными в БД SQLite
     // Запись данных в столбцы таблицы animals с данными в БД SQLite
