@@ -76,15 +76,11 @@ pub async fn get_table_head(
                     .map(|x| x.trim().to_lowercase())
                     .filter(|x| !x.is_empty())
                     .collect();
-                // println!("# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # ");
-                // print!("rows_clear: {:?}", &rows_clear);
                 let rows: Vec<String> = rows_clear
                     .iter()
                     .map(|x| x.replace(".", "").replace(" ", "_"))
                     .map(|x| if x == "id" { "id_animal".to_string() } else { x.to_string() })
                     .collect();
-                // println!("# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # ");
-                // print!("86 rows: {:?}", &rows);
                 if rows.len() < 4 {
                     let mut rows_extended = vec![];
                     for i in 1..=4 {
@@ -95,8 +91,6 @@ pub async fn get_table_head(
                     result_table_head.extend(rows);
                 }
             }
-            println!("# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # ");
-            print!("result_table_head : {:?}", &result_table_head);
             Ok(result_table_head)
         } else {
             Err("No <tr> found in <thead>".into())
