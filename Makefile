@@ -12,3 +12,6 @@ compile:
 
 compile_build:
 	docker compose  -f "docker-compose.yaml" up --build rust_cross_compile_msvc 
+
+doc:
+	cargo d --manifest-path=src-tauri/Cargo.toml
