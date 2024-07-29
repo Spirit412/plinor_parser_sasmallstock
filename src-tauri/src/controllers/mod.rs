@@ -4,7 +4,7 @@ mod data_processor;
 
 use crate::config;
 use http_client::fetch_html;
-use html_parser::parse_breeds;
+use html_parser::{ parse_breeds, get_table_head };
 use data_processor::process_and_return_json;
 use std::process::Command;
 use chrono::Local;
@@ -48,9 +48,13 @@ pub fn get_current_time() -> String {
 #[tokio::main]
 #[tauri::command]
 pub async fn get_breeds() -> String {
-
     let base_url = &config::CONFIG.base_url;
 
+    log_with_context(
+        module_path!(),
+        line!(),
+        "Получить список пород сайта породы для обновления списка"
+    );
     let url = base_url.to_string() + "index.php?ppd=serv_list&breed=";
     log_with_context(module_path!(), line!(), "Starting fetch_html");
     let html = fetch_html(&url).await.expect("Failed to fetch HTML");
@@ -64,4 +68,57 @@ pub async fn get_breeds() -> String {
         Ok(json) => json,
         Err(_) => "{}".to_string(),
     }
+}
+#[tokio::main]
+#[tauri::command]
+pub async fn set_animals_to_db(
+    sop_brd: &str, // DOP для Dorper и ILE для Ile de France
+    sop_sex: &str,
+    soek_lim: &str
+) -> String {
+    let base_url = &config::CONFIG.base_url;
+
+    /*     Запись данных по животным из таблицы списка животных в БД
+    # Получаем страницу со списком животных
+    # Парсим заголовок таблицы животных, получая список столбцов => header_columns
+    # На основе списка создаём таблицу животных в БД SQLite. Для указанной пароды=sop_brd. Поля таблицы из header_columns. Тип String
+    # Парсим каждую строку таблицы в асоциативный массив, где ключ из header_columns. Каждую строку записываем в БД
+    
+    
+    */
+
+    log_with_context(
+        module_path!(),
+        line!(),
+        &format!("Получаем страницу со списком животных. LIMIT:{}, BREED:{},", soek_lim, sop_brd)
+    );
+    let url: String =
+        base_url.to_string() +
+        &format!(
+            "index.php?ppd=serv_list_sql&breed=&sop_brd={}&sop_reg=A&sop_sex={}&soek_lim={}&sop_gt=ALL&sop_obj=lmi&filter1=IND&age1_sig=%3E%3D&age1_val=&age2_sig=%3C%3D&age2_val=&lmi1_sig=&lmi1_sigv=&lmi2_sig=&lmi2_sigv=&ngi1_sig=&ngi1_sigv=&ngi2_sig=&ngi2_sigv=&ori1_sig=&ori1_sigv=&ori2_sig=&ori2_sigv=&wean_dir1_sig=&wean_dir1_sigv=&wean_dir2_sig=&wean_dir2_sigv=&wean_dirA_sig=&wean_dirA_sigv=&wean_mat1_sig=&wean_mat1_sigv=&wean_mat2_sig=&wean_mat2_sigv=&wean_matA_sig=&wean_matA_sigv=&wean_comb1_sig=&wean_comb1_sigv=&wean_comb2_sig=&wean_comb2_sigv=&post_dir1_sig=&post_dir1_sigv=&post_dir2_sig=&post_dir2_sigv=&post_dirA_sig=&post_dirA_sigv=&n_weaned1_sig=&n_weaned1_sigv=&n_weaned2_sig=&n_weaned2_sigv=&n_weanedA_sig=&n_weanedA_sigv=&afb1_sig=&afb1_sigv=&afb2_sig=&afb2_sigv=&afbA_sig=&afbA_sigv=&ilp1_sig=&ilp1_sigv=&ilp2_sig=&ilp2_sigv=&ilpA_sig=&ilpA_sigv",
+            sop_brd,
+            sop_sex,
+            soek_lim
+        );
+
+    log_with_context(module_path!(), line!(), "Starting fetch_html");
+    let html: String = fetch_html(&url).await.expect(
+        "Ошибка получения страницы HTML с таблицей животных"
+    );
+    log_with_context(
+        module_path!(),
+        line!(),
+        "Парсим заголовок таблицы животных, получая список столбцов"
+    );
+    let header_columns: Vec<String> = get_table_head(&html).await.expect(
+        "Ошибка получения заголовока таблицы животных, получая список столбцов"
+    );
+    for item in header_columns {
+        println!("Ответ от функции get_table_head: {:#?}, ", item);
+    }
+    // log_with_context(module_path!(), line!(), "Breeds parsed, starting process_and_return_json");
+    // let result = "";
+    // log_with_context(module_path!(), line!(), "Data processed and return json");
+
+    "Test".to_string()
 }

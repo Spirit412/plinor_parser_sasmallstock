@@ -66,6 +66,7 @@ fn main() {
                 controllers::get_breeds,
                 controllers::get_os_info,
                 controllers::get_current_time,
+                controllers::set_animals_to_db,
                 long_running_job
             ]
         )
