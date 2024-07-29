@@ -231,3 +231,20 @@ mainApp.controller('MainCtrl', ['$scope', function($scope) {
         }
     });
 }]);
+
+mainApp.controller("SetAnimalsListToDb", function ($scope) {
+    $scope.SetAnimalsListToDb = function () {
+        window.__TAURI__
+            .invoke("set_animals_to_db", {
+                sopBrd: "DOP",
+                sopSex: "ALL",
+                soekLim: "10",
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    };
+});
