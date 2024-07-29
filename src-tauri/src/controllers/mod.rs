@@ -69,13 +69,41 @@ pub async fn get_breeds() -> String {
         Err(_) => "{}".to_string(),
     }
 }
+
+/// Записывает данные по животным из таблицы списка животных в БД
+///
+/// # Параметры
+///
+/// - `sop_brd`: строка, определяющая породу животного (DOP для Dorper или ILE для Ile de France)
+/// - `sop_sex`: строка, определяющая пол животного (ALL для обоих полов или M для мужчин или F для самок)
+/// - `soek_lim`: строка, определяющая количество животных для записи в БД (по умолчанию "10")
+///
+/// # Пример
+///
+/// ```
+/// use tauri::command;
+///
+/// #[command]
+/// async fn set_animals_to_db() {
+///     let result = set_animals_to_db("DOP", "ALL", "10").await;
+///     println!("{:?}", result);
+/// }
+/// ```
+///
+/// # Возвращаемое значение
+///
+/// Возвращает вектор строк с результатами записи в БД.
+///
+/// # Ошибки
+///
+/// Возвращает пустой вектор, если произошла ошибка при записи в БД.
 #[tokio::main]
 #[tauri::command]
 pub async fn set_animals_to_db(
     sop_brd: &str, // DOP для Dorper и ILE для Ile de France
     sop_sex: &str,
     soek_lim: &str
-) -> String {
+) -> Vec<String> {
     let base_url = &config::CONFIG.base_url;
 
     /*     Запись данных по животным из таблицы списка животных в БД
@@ -113,12 +141,6 @@ pub async fn set_animals_to_db(
     let header_columns: Vec<String> = get_table_head(&html).await.expect(
         "Ошибка получения заголовока таблицы животных, получая список столбцов"
     );
-    for item in header_columns {
-        println!("Ответ от функции get_table_head: {:#?}, ", item);
-    }
-    // log_with_context(module_path!(), line!(), "Breeds parsed, starting process_and_return_json");
-    // let result = "";
-    // log_with_context(module_path!(), line!(), "Data processed and return json");
-
-    "Test".to_string()
+    println!("Ответ от функции get_table_head: {:#?}, ", header_columns);
+    header_columns
 }
