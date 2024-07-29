@@ -2,6 +2,9 @@ mod http_client;
 mod html_parser;
 mod data_processor;
 
+use crate::database::models::AnimalsData;
+use crate::database::connection::get_connection;
+
 use crate::config;
 use http_client::fetch_html;
 use html_parser::{ parse_breeds, get_table_head };
@@ -141,6 +144,17 @@ pub async fn set_animals_to_db(
     let header_columns: Vec<String> = get_table_head(&html).await.expect(
         "Ошибка получения заголовока таблицы животных, получая список столбцов"
     );
-    println!("Ответ от функции get_table_head: {:#?}, ", header_columns);
+    println!("Ответ от функции # module:{}, line:{}, data:{:#?}", module_path!(), line!(), header_columns.join(", "));
+
+    log_with_context(module_path!(), line!(), "Начинаем создание таблицы животных в БД");
+    // Инициализация БАЗЫ ДАННЫХ SQLite
+    conn = get_connection().expect("Ошибка инициализации подключения к БД");
+    let animals_data = AnimalsData::create_table(&conn).unwrap();
+    // Создание таблицы animals с данными в БД SQLite
+    // Создание столбцов таблицы animals с данными в БД SQLite
+    // Запись данных в столбцы таблицы animals с данными в БД SQLite
+    
+
+
     header_columns
 }

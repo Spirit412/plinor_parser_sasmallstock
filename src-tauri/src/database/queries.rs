@@ -4,17 +4,18 @@
 выполнения операций CRUD.
  */
 
-use rusqlite::{Connection, Result, Row};
-use crate::database::models::User;
+use rusqlite::{Connection, Result};
 
-pub fn create_user(conn: &Connection, user: &User) -> Result<usize> {
-    conn.execute(
-        "INSERT INTO users (name, email) VALUES (?1, ?2)",
-        &[&user.name, &user.email],
-    )
+/// Функция для работы с запросами к БД SQLite
+///
+/// # Примеры
+///
+/// ```
+/// use crate::database::connections;
+///
+/// let db = connections::get_connection().expect("Failed to get database connection");
+/// connections::execute_query(&db, "CREATE TABLE IF NOT EXISTS animals (id INTEGER PRIMARY KEY, name TEXT NOT NULL);")?;
+/// ```
+pub fn execute_query(db: &Connection, query: &str) -> Result<()> {
+    db.execute_batch(query)
 }
-
-pub fn get_user_by_id(conn: &Connection, id: i32) -> Result<User> {
-    let mut stmt = conn.prepare("SELECT id, name, email FROM users WHERE id = ?1")?;
-    let user_row = stmt.query_row(&[&id], User
-        

@@ -7,7 +7,7 @@ use rusqlite::{ params, Connection, Result };
 use chrono::{ DateTime, Utc };
 
 #[derive(Debug)]
-pub struct AnimalsDataRow {
+pub struct AnimalsData {
     // Primary key
     pub id: Option<i32>, // id
 
@@ -24,7 +24,6 @@ pub struct AnimalsDataRow {
     pub mm: Option<String>, // Мать матери
     // first_table_animal_card
     pub flock_name: Option<String>, // Flock Name
-    pub status: Option<String>, // Status
     pub herd_book_section: Option<String>, // Herd Book Section
     pub inbreeding: Option<String>, // Inbreeding
     pub keeper: Option<String>, // Keeper
@@ -52,7 +51,7 @@ pub struct AnimalsDataRow {
     pub dorper_logix_merit_index: Option<String>, // Dorper Logix Merit Index
     pub url_animal_card: Option<String>, // адрес карточки животного
     pub breed: String, // порода
-    pub parse_card: i32, // Признак добавления данных из карточки
+    pub parse_card: i32, // Признак добавления данных из карточки 0 - нет, 1 - да
     pub fdm: Option<String>, // Flock Name
     pub name: Option<String>, // Identification Number
     pub comp_no: Option<String>, // S.A. Reg Number
@@ -103,10 +102,10 @@ pub struct AnimalsDataRow {
     pub ilp_4: Option<String>, // ILP
 }
 
-impl AnimalsDataRow {
+impl AnimalsData {
     pub fn create_table(conn: &Connection) -> Result<()> {
         conn.execute(
-            "CREATE TABLE IF NOT EXISTS animals_data (
+            "CREATE TABLE IF NOT EXISTS animals (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 create_at TEXT NOT NULL,
                 update_at TEXT NOT NULL,
