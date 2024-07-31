@@ -1,15 +1,14 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-#![allow(dead_code, unused_variables)]
+#![allow(dead_code, unused_variables, unused_imports)]
 mod controllers; // Импортируйте модуль, содержащий функции
 mod config;
-pub mod logging;
+mod logging;
 mod database;
 
 use tauri::AppHandle;
-use logging::{ init_logging, log_with_context };
 use dotenv::dotenv;
-
+use tracing::{ info, error };
 use tauri::{ Manager, Runtime };
 use serde::{ Deserialize, Serialize };
 // use uuid::Uuid;
@@ -80,15 +79,20 @@ async fn long_running_job<R: Runtime>(window: tauri::Window<R>) {
 }
 
 fn main() {
-    init_logging();
-    log_with_context(module_path!(), line!(), "Starting!!");
-    // Загружаем переменные из файла .env
+    dotenv::from_path(".env").ok();
     dotenv().ok();
-    let base_url = &config::CONFIG.base_url;
-    println!("Базовый урл {}", base_url);
+
+    logging::init_logging();
+
+    // Использование tracing
+    info!("Application started");
+
     tauri::Builder
         ::default()
         .setup(|app| {
+            // Initialize the database.
+            database::db::init_db();
+
             // Создаем Arc<Mutex<AppHandle>> для безопасного доступа к AppHandle из асинхронной задачи
             let app_handle = Arc::new(Mutex::new(app.handle()));
             let app_handle_clone = app_handle.clone();

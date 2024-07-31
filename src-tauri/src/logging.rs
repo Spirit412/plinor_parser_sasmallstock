@@ -1,55 +1,24 @@
 #![allow(dead_code, unused_variables)]
-use log::{ info, LevelFilter };
-use simple_logging;
-use chrono::Local;
+use tracing::{Subscriber, subscriber::set_global_default};
+use tracing_subscriber::{FmtSubscriber, EnvFilter};
+use tracing_subscriber::fmt::{self, SubscriberBuilder};
+use std::fs::File;
+use std::io::Write;
 
-/// Инициализирует журналирование для приложения
-///
-/// # Возвращаемое значение
-///
-/// Возвращает `Result<(), Error>` с ошибкой, если не удалось инициализировать журналирование.
-///
-/// # Пример
-///
-/// ```
-/// use log::info;
-///
-/// fn main() {
-///     init_logging();
-///
-///     info!("Приложение запущено");
-/// }
-/// ```
 pub fn init_logging() {
-    simple_logging::log_to_file("app.log", LevelFilter::Info).unwrap();
-}
+    let filter = EnvFilter::try_from_env("RUST_LOG").unwrap_or_else(|_| EnvFilter::new("info"));
 
-/// Логирует сообщение с контекстом
-///
-/// Логирует сообщение в журнал с указанием модуля, строки и столбца кода.
-///
-/// # Параметры
-///
-/// - `module`: строка, модуль, в котором выполняется логирование
-/// - `line`: целое число, номер строки, в которой выполняется логирование
-/// - `message`: строка, сообщение для логирования
-///
-/// # Пример
-///
-/// ```
-/// use log::info;
-///
-/// fn main() {
-///     log_with_context(module_path!(), line!(), "Сообщение");
-/// }
-/// ```
-/// # Примечание
-///
-/// ```
-/// module_path!() - имя модуля, в котором выполняется логирование
-/// line!() - номер строки, в которой выполняется логирование
-/// ```
-pub fn log_with_context(module: &str, line: u32, message: &str) {
-    let now = Local::now();
-    info!("[{}] [{}] [{}:{}] {}", now.format("%Y-%m-%d %H:%M:%S"), module, file!(), line, message);
+    let file = File::create("app.log").expect("Unable to create log file");
+
+    let subscriber = FmtSubscriber::builder()
+        .with_env_filter(filter)
+        .with_writer(file)
+        .with_ansi(false)
+        .with_target(true)
+        .with_thread_ids(true)
+        .with_file(true)
+        .with_line_number(true)
+        .finish();
+
+    set_global_default(subscriber).expect("Setting default subscriber failed");
 }

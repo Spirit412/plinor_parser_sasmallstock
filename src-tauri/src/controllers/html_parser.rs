@@ -1,4 +1,4 @@
-#![allow(dead_code, unused_variables)]
+#![allow(dead_code, unused_variables, unused_imports)]
 use scraper::{ Html, Selector };
 use std::error::Error;
 use serde::Serialize;

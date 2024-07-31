@@ -5,18 +5,16 @@
 выполнения операций CRUD.
  */
 
-use rusqlite::{Connection, Result};
+use diesel::sqlite::SqliteConnection;
+use super::models::{AnimalData, NewAnimal};
 
-/// Функция для работы с запросами к БД SQLite
-///
-/// # Примеры
-///
-/// ```
-/// use crate::database::connections;
-///
-/// let db = connections::get_connection().expect("Failed to get database connection");
-/// connections::execute_query(&db, "CREATE TABLE IF NOT EXISTS animals (id INTEGER PRIMARY KEY, name TEXT NOT NULL);")?;
-/// ```
-pub fn execute_query(db: &Connection, query: &str) -> Result<()> {
-    db.execute_batch(query)
-}
+
+// pub fn create_animal(conn: &mut SqliteConnection, new_animal: &NewAnimal) -> AnimalData {
+//     use crate::database::schema::animals;
+
+//     diesel::insert_into(animals::table)
+//         .values(&new_animal)
+//         .returning(AnimalData::as_returning())
+//         .get_result(conn)
+//         .expect("Error saving new animal")
+// }

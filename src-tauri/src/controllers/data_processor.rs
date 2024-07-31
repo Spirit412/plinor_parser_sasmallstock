@@ -1,9 +1,9 @@
-#![allow(dead_code, unused_variables)]
+#![allow(dead_code, unused_variables, unused_imports)]
 use serde::Serialize;
 use serde_json::{ to_string, to_string_pretty };
 use std::error::Error;
 
-use crate::logging::log_with_context;
+use tracing::{ info, error };
 
 // use super::html_parser::Breed;
 use crate::controllers::html_parser::Breed;
@@ -15,7 +15,7 @@ struct BreedData {
 }
 #[allow(dead_code)]
 pub async fn process_and_print_data(breeds: Vec<Breed>) -> Result<(), Box<dyn Error>> {
-    log_with_context(module_path!(), line!(), "Starting process_and_print_data");
+    info!("Starting process_and_print_data");
     let mut breed_data = Vec::new();
 
     for breed in breeds {
@@ -25,7 +25,7 @@ pub async fn process_and_print_data(breeds: Vec<Breed>) -> Result<(), Box<dyn Er
         });
     }
 
-    log_with_context(module_path!(), line!(), "Parsed data");
+    info!("Parsed data");
 
     match to_string_pretty(&breed_data) {
         Ok(json) => println!("{}", json),
@@ -36,7 +36,7 @@ pub async fn process_and_print_data(breeds: Vec<Breed>) -> Result<(), Box<dyn Er
 }
 
 pub async fn process_and_return_json(breeds: Vec<Breed>) -> Result<String, Box<dyn Error>> {
-    log_with_context(module_path!(), line!(), "Starting process_and_return_json");
+    info!("Starting process_and_return_json");
     let mut breed_data = Vec::new();
 
     for breed in breeds {
@@ -46,7 +46,7 @@ pub async fn process_and_return_json(breeds: Vec<Breed>) -> Result<String, Box<d
         });
     }
 
-    log_with_context(module_path!(), line!(), "Parsed data");
+    info!("Parsed data");
 
     let json = to_string(&breed_data)?;
     Ok(json)
